@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import StaticGlitch from './Components/ThreeEffects/StaticGlitch/StaticGlitch';
+import DefaultStars from './Components/ThreeEffects/DefaultGlitch/DefaultStars'
 
 
 function App() {
   return (
     <div className="App">
-<StaticGlitch/>
+<DefaultStars/>
+
     </div>
   );
 }
