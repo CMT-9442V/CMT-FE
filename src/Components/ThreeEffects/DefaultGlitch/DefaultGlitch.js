@@ -3,9 +3,10 @@ import * as THREE from 'three'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js'
 import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass.js'
+import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 
-export default function DefaultCirclesGlitch() {
+export default function DefaultGlitch() {
     const GlitchRef = useRef()
     useEffect(() => {
 //==================THREEJS Stuff===================//
@@ -79,7 +80,7 @@ function init() {
         }
         return BufferGeometryUtils.mergeBufferGeometries( geometries );
     }
-    generateGeometry()
+
 
     //===============Light ====================//
     scene.add( new THREE.AmbientLight( 0x222222 ) );
