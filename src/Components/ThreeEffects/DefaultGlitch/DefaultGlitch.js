@@ -6,13 +6,14 @@ import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass.js'
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 
-export default function DefaultGlitch() {
+export default function DefaultGlitch(props) {
     const GlitchRef = useRef()
     useEffect(() => {
 //==================THREEJS Stuff===================//
 var camera, scene, renderer, composer;
 var object, light;
 var glitchPass;
+
 
 init();
 animate();

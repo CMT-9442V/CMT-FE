@@ -5,14 +5,14 @@ import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js'
 import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass.js'
 import fontJSON from '../fonts/fontJSON.json'
 
-export default function DefaultTextGlitch() {
+export default function DefaultTextGlitch(props) {
     const GlitchRef = useRef()
     useEffect(() => {
 //==================THREEJS Stuff===================//
 var camera, scene, renderer, composer;
 var object, light;
 var glitchPass;
-let textvar = "YEET"
+let textvar = props.text
 init();
 animate();
 function updateOptions() {
@@ -65,7 +65,7 @@ function animate() {
     requestAnimationFrame( animate );
     composer.render();
 }
-    }, [GlitchRef])
+    }, [props])
     return (
         <div>
             <div ref={GlitchRef} id ="wildGlitch"></div>
