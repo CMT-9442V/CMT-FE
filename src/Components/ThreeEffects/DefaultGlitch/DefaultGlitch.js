@@ -3,15 +3,18 @@ import * as THREE from 'three'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js'
 import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass.js'
-import fontJSON from '../fonts/fontJSON.json'
+import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
-export default function DefaultGlitch() {
+
+export default function DefaultGlitch(props) {
     const GlitchRef = useRef()
     useEffect(() => {
 //==================THREEJS Stuff===================//
 var camera, scene, renderer, composer;
 var object, light;
 var glitchPass;
+
+
 init();
 animate();
 function updateOptions() {
@@ -31,14 +34,56 @@ function init() {
     object = new THREE.Object3D();
     scene.add( object );
 
-    //FOnt
+    //============Box Geometry=================//
 
-    var loader = new THREE.FontLoader();
-    var font =loader.parse(fontJSON)
-    var geometry = new THREE.TextGeometry("Test String",{font:font, size: 160, height: 10, material: 0, bevelThickness: 1, extrudeMaterial:10})
-    var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
-    var mesh = new THREE.Mesh(geometry,material)
-    object.add(mesh)
+    function generateGeometry( objectType, numObjects ) {
+        function applyVertexColors( geometry, color ) {
+            var position = geometry.attributes.position;
+            var colors = [];
+            for ( var i = 0; i < position.count; i ++ ) {
+                colors.push( color.r, color.g, color.b );
+            }
+            geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
+        }
+        var geometries = [];
+        var matrix = new THREE.Matrix4();
+        var position = new THREE.Vector3();
+        var rotation = new THREE.Euler();
+        var quaternion = new THREE.Quaternion();
+        var scale = new THREE.Vector3();
+        var color = new THREE.Color();
+        for ( var i = 0; i < numObjects; i ++ ) {
+            position.x = Math.random() * 10000 - 5000;
+            position.y = Math.random() * 6000 - 3000;
+            position.z = Math.random() * 8000 - 4000;
+            rotation.x = Math.random() * 2 * Math.PI;
+            rotation.y = Math.random() * 2 * Math.PI;
+            rotation.z = Math.random() * 2 * Math.PI;
+            quaternion.setFromEuler( rotation );
+            scale.x = Math.random() * 200 + 100;
+            var geometry;
+            if ( objectType === 'cube' ) {
+                geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+                geometry = geometry.toNonIndexed(); // merging needs consistent buffer geometries
+                scale.y = Math.random() * 200 + 100;
+                scale.z = Math.random() * 200 + 100;
+                color.setRGB( 0, 0, 0.1 + 0.9 * Math.random() );
+            } else if ( objectType === 'sphere' ) {
+                geometry = new THREE.IcosahedronBufferGeometry( 1, 1 );
+                scale.y = scale.z = scale.x;
+                color.setRGB( 0.1 + 0.9 * Math.random(), 0, 0 );
+            }
+            // give the geom's vertices a random color, to be displayed
+            applyVertexColors( geometry, color );
+            matrix.compose( position, quaternion, scale );
+            geometry.applyMatrix( matrix );
+            geometries.push( geometry );
+        }
+        return BufferGeometryUtils.mergeBufferGeometries( geometries );
+    }
+
+
+    //===============Light ====================//
     scene.add( new THREE.AmbientLight( 0x222222 ) );
     light = new THREE.DirectionalLight( 0xffffff );
     light.position.set( 1, 1, 1 );

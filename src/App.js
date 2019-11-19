@@ -1,13 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import StaticGlitch from './Components/ThreeEffects/StaticGlitch/StaticGlitch';
+import DefaultStars from './Components/ThreeEffects/DefaultGlitch/DefaultStars'
+import DefaultGlitch from './Components/ThreeEffects/DefaultGlitch/DefaultGlitch'
+import DefaultTextGlitch from './Components/ThreeEffects/DefaultGlitch/DefaultTextGlitch';
+import MainChannelRenderer from './Components/Channels/MainChannelRenderer';
+// import Tree from './Components/ThreeEffects/Geometries/Tree';
 
 
 function App() {
   return (
     <div className="App">
-<StaticGlitch/>
+{/* <DefaultStars/> */}
+{/* <Tree/> */}
+<MainChannelRenderer/>
     </div>
   );
 }
