@@ -8,12 +8,14 @@ import Login from './Components/Auth/Login';
 
 function App() {
   return (
+
     <div className="App">
       <Route exact path = "/" component={Home}/>
       <Route exact path = "/Game" component={MainChannelRenderer}/>
       <Route exact path= "/Login" component={Login}/>
       <Route exact path = "/Signup" component={Signup}/>
     </div>
+
   );
 }
 
