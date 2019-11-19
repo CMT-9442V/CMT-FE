@@ -4,7 +4,7 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js'
 import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass.js'
 import fontJSON from '../fonts/fontJSON.json'
-
+import "./Glitch.css"
 export default function DefaultTextGlitch(props) {
     const GlitchRef = useRef()
     useEffect(() => {
@@ -15,12 +15,15 @@ var glitchPass;
 let textvar = props.text
 init();
 animate();
+var wildGlitch = document.getElementById( 'wildGlitch' );
+    glitchPass.goWild = wildGlitch.checked;
 function updateOptions() {
     var wildGlitch = document.getElementById( 'wildGlitch' );
     glitchPass.goWild = wildGlitch.checked;
 }
 function init() {
-    renderer = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer();
+    
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
@@ -31,6 +34,19 @@ function init() {
     scene.fog = new THREE.Fog( 0x000000, 1, 1000 );
     object = new THREE.Object3D();
     scene.add( object );
+    //===============Background Loader=======================//
+// const bgloader = new THREE.TextureLoader();
+// const bgTexture = bgloader.load(props.background_url);
+// scene.background = bgTexture;
+//   const canvasAspect = canvas.clientWidth / canvas.clientHeight;
+//   const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;
+//   const aspect = imageAspect / canvasAspect;
+ 
+//   bgTexture.offset.x = aspect > 1 ? (1 - 1 / aspect) / 2 : 0;
+//   bgTexture.repeat.x = aspect > 1 ? 1 / aspect : 1;
+ 
+//   bgTexture.offset.y = aspect > 1 ? 0 : (1 - aspect) / 2;
+//   bgTexture.repeat.y = aspect > 1 ? 1 : aspect;
 
     //============Font Geometry=================//
 
@@ -68,6 +84,9 @@ function animate() {
     }, [props])
     return (
         <div>
+            <div id = "Channel-Div">
+                {props.channel}
+            </div>
             <div ref={GlitchRef} id ="wildGlitch"></div>
         </div>
     )

@@ -1,0 +1,15 @@
+#Channel-Div{
+    position: absolute;
+    right: 1%;
+    top:2%;
+    color:#44C553;
+    font-size: 2rem;
+    font-family: 'Geo', sans-serif;
+
+}
+
+#wildGlitch{
+
+    background: url("https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca") no-repeat center center;
+    background-size: cover;
+}
