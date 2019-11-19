@@ -5,6 +5,7 @@ import { Redirect} from "react-router-dom";
 import Swal from "sweetalert2";
 import styled from 'styled-components'
 import "./Login.css"
+import Navbar from "../Navbar/Navbar";
 const NavLink = styled(Link)`
 background-image:repeating-linear-gradient(135deg, rgba(9, 9, 9, 0.08) 0px, rgba(9, 9, 9, 0.08) 49px,rgba(50, 50, 50, 0.08) 49px, rgba(50, 50, 50, 0.08) 59px,rgba(80, 80, 80, 0.08) 59px, rgba(80, 80, 80, 0.08) 72px,rgba(73, 73, 73, 0.08) 72px, rgba(73, 73, 73, 0.08) 82px,rgba(100, 100, 100, 0.08) 82px, rgba(100, 100, 100, 0.08) 92px),repeating-linear-gradient(135deg, rgba(211, 211, 211, 0.08) 0px, rgba(211, 211, 211, 0.08) 44px,rgba(204, 204, 204, 0.08) 44px, rgba(204, 204, 204, 0.08) 67px,rgba(14, 14, 14, 0.08) 67px, rgba(14, 14, 14, 0.08) 86px,rgba(53, 53, 53, 0.08) 86px, rgba(53, 53, 53, 0.08) 127px,rgba(224, 224, 224, 0.08) 127px, rgba(224, 224, 224, 0.08) 166px),repeating-linear-gradient(135deg, rgba(120, 120, 120, 0.08) 0px, rgba(120, 120, 120, 0.08) 117px,rgba(203, 203, 203, 0.08) 117px, rgba(203, 203, 203, 0.08) 180px,rgba(47, 47, 47, 0.08) 180px, rgba(47, 47, 47, 0.08) 322px,rgba(9, 9, 9, 0.08) 322px, rgba(9, 9, 9, 0.08) 428px,rgba(238, 238, 238, 0.08) 428px, rgba(238, 238, 238, 0.08) 487px),repeating-linear-gradient(135deg, rgba(147, 147, 147, 0.08) 0px, rgba(147, 147, 147, 0.08) 100px,rgba(60, 60, 60, 0.08) 100px, rgba(60, 60, 60, 0.08) 231px,rgba(68, 68, 68, 0.08) 231px, rgba(68, 68, 68, 0.08) 344px,rgba(104, 104, 104, 0.08) 344px, rgba(104, 104, 104, 0.08) 442px,rgba(229, 229, 229, 0.08) 442px, rgba(229, 229, 229, 0.08) 567px),linear-gradient(90deg, rgb(238, 207, 33),rgb(214, 142, 8));
 
@@ -114,6 +115,7 @@ const Login = (props) => {
   }
   return (   
     <div >
+      <Navbar/>
       <Container>
 
         <Left>
