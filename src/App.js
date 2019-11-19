@@ -1,18 +1,18 @@
 import React from 'react';
-import './App.css';
-import DefaultStars from './Components/ThreeEffects/DefaultGlitch/DefaultStars'
-import DefaultGlitch from './Components/ThreeEffects/DefaultGlitch/DefaultGlitch'
-import DefaultTextGlitch from './Components/ThreeEffects/DefaultGlitch/DefaultTextGlitch';
-import MainChannelRenderer from './Components/Channels/MainChannelRenderer';
-// import Tree from './Components/ThreeEffects/Geometries/Tree';
+import {Route} from 'react-router-dom'
+import Home from './Components/Intro/Main';
+import MainChannelRenderer from './Components/Channels/MainChannelRenderer'
+import Signup from './Components/Auth/Signup';
+import Login from './Components/Auth/Login';
 
 
 function App() {
   return (
     <div className="App">
-{/* <DefaultStars/> */}
-{/* <Tree/> */}
-<MainChannelRenderer/>
+      <Route exact path = "/" component={Home}/>
+      <Route exact path = "/Game" component={MainChannelRenderer}/>
+      <Route exact path= "/Login" component={Login}/>
+      <Route exact path = "/Signup" component={Signup}/>
     </div>
   );
 }
