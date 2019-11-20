@@ -35,10 +35,10 @@ function init() {
     object = new THREE.Object3D();
     scene.add( object );
     //===============Background Loader=======================//
-// const bgloader = new THREE.TextureLoader();
-// const bgTexture = bgloader.load(props.background_url);
-// scene.background = bgTexture;
-//   const canvasAspect = canvas.clientWidth / canvas.clientHeight;
+    let loader = new THREE.TextureLoader();
+    const bgTexture = loader.load("https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg");
+    scene.background = bgTexture;
+//   const canvasAspect = window.clientWidth / window.clientHeight;
 //   const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;
 //   const aspect = imageAspect / canvasAspect;
  
@@ -50,9 +50,9 @@ function init() {
 
     //============Font Geometry=================//
 
-    var loader = new THREE.FontLoader();
+loader = new THREE.FontLoader();
     var font =loader.parse(fontJSON)
-    var geometry = new THREE.TextGeometry(textvar,{font:font, size: 160, height: 10, material: 0, bevelThickness: 1, extrudeMaterial:10})
+    var geometry = new THREE.TextGeometry(textvar,{font:font, size: 70, height: 10, material: 0, bevelThickness: 1, extrudeMaterial:10})
     var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
     var mesh = new THREE.Mesh(geometry,material)
     object.add(mesh)

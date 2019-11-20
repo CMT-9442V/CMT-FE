@@ -6,7 +6,7 @@ import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass.js'
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import "./Glitch.css"
 
-export default function DefaultGlitch(props) {
+export default function Start(props) {
     const GlitchRef = useRef()
     useEffect(() => {
 //==================THREEJS Stuff===================//
@@ -81,7 +81,10 @@ function init() {
         }
         return BufferGeometryUtils.mergeBufferGeometries( geometries );
     }
-
+//===================BG====================//
+let loader = new THREE.TextureLoader();
+const bgTexture = loader.load("https://raw.githubusercontent.com/CMT-9442V/CMT-FE/Bryce/src/Components/assets/images/NoSignal.jpg");
+scene.background = bgTexture;
 
     //===============Light ====================//
     scene.add( new THREE.AmbientLight( 0x222222 ) );
