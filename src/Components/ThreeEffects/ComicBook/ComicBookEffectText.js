@@ -7,11 +7,11 @@ import { RGBShiftShader } from 'three/examples/jsm/shaders/RGBShiftShader.js';
 import { DotScreenShader } from 'three/examples/jsm/shaders/DotScreenShader.js';
 import fontJSON from '../fonts/fontJSON.json'
 
-export default function ComicBookEffect(props) {
+export default function ComicBookEffectText(props) {
     useEffect(() => {
         var camera, scene, renderer, composer;
         var object, light;
-        // const textvar = props.text
+        const textvar = props.text
         init();
         animate();
         function Options() {
@@ -31,22 +31,13 @@ export default function ComicBookEffect(props) {
             object = new THREE.Object3D();
             scene.add( object );
             //==================Text===================//
-            // var loader = new THREE.FontLoader();
-            // var font =loader.parse(fontJSON)
-            // var geometry = new THREE.TextGeometry(textvar,{font:font, size: 160, height: 10, material: 0, bevelThickness: 1, extrudeMaterial:10})
-            // var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
-            // var mesh = new THREE.Mesh(geometry,material)
-            // object.add(mesh)
-            var geometry = new THREE.BoxBufferGeometry( 4, 4, 4 );
-            var material = new THREE.MeshPhongMaterial( { color: 0xC5E763, flatShading: true } );
-            for ( var i = 0; i < 100; i ++ ) {
-                var mesh = new THREE.Mesh( geometry, material );
-                mesh.position.set( Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5 ).normalize();
-                mesh.position.multiplyScalar( Math.random() * 400 );
-                mesh.rotation.set( Math.random() * 2, Math.random() * 2, Math.random() * 2 );
-                mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 50;
-                object.add( mesh );
-            }
+            var loader = new THREE.FontLoader();
+            var font =loader.parse(fontJSON)
+            var geometry = new THREE.TextGeometry(textvar,{font:font, size: 160, height: 10, material: 0, bevelThickness: 1, extrudeMaterial:10})
+            var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+            var mesh = new THREE.Mesh(geometry,material)
+            object.add(mesh)
+    //=======================Light==========================//
             scene.add( new THREE.AmbientLight( 0x222222 ) );
             light = new THREE.DirectionalLight( 0xffffff );
             light.position.set( 1, 1, 1 );
@@ -61,8 +52,8 @@ export default function ComicBookEffect(props) {
             effect.uniforms[ 'amount' ].value = 0.0015;
             composer.addPass( effect );
             window.addEventListener( 'resize', onWindowResize, false );
-            var wildGlitchOption = document.getElementById( 'Comic' );
-            wildGlitchOption.addEventListener( 'change', Options);
+            // var wildGlitchOption = document.getElementById( 'Comic' );
+            // wildGlitchOption.addEventListener( 'change', Options);
             window.addEventListener( 'resize', onWindowResize, false );
         }
         function onWindowResize() {
@@ -73,8 +64,7 @@ export default function ComicBookEffect(props) {
         }
         function animate() {
             requestAnimationFrame( animate );
-            object.rotation.x += 0.005;
-            object.rotation.y += 0.01;
+object.rotation.z += .01
             composer.render();
         }
     }, [props])
