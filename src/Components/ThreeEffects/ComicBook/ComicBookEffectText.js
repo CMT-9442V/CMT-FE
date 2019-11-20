@@ -30,8 +30,12 @@ export default function ComicBookEffectText(props) {
             scene.fog = new THREE.Fog( 0x000000, 1, 1000 );
             object = new THREE.Object3D();
             scene.add( object );
+            //==================BG====================//
+            let loader = new THREE.TextureLoader();
+            const bgTexture = loader.load("https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg");
+            scene.background = bgTexture;
             //==================Text===================//
-            var loader = new THREE.FontLoader();
+           loader = new THREE.FontLoader();
             var font =loader.parse(fontJSON)
             var geometry = new THREE.TextGeometry(textvar,{font:font, size: 45, height: 10, material: 0, bevelThickness: 1, extrudeMaterial:10})
             var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );

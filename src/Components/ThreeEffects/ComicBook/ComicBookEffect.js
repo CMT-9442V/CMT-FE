@@ -46,6 +46,11 @@ export default function ComicBookEffect(props) {
                 mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 50;
                 object.add( mesh );
             }
+            //=============BG======================//
+            let loader = new THREE.TextureLoader();
+            const bgTexture = loader.load("https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg");
+            scene.background = bgTexture;
+            //===========Light=====================//
             scene.add( new THREE.AmbientLight( 0x222222 ) );
             light = new THREE.DirectionalLight( 0xffffff );
             light.position.set( 1, 1, 1 );

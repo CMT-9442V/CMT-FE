@@ -5,14 +5,14 @@ import ComicBookEffect from '../ThreeEffects/ComicBook/ComicBookEffect'
 import ComicBookEffectText from '../ThreeEffects/ComicBook/ComicBookEffectText'
 import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
 import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
-
+import Start from '../Start/Start'
 export default function MainChannelRenderer() {
 const [state, setstate] = useState([
     {
         channel:"000",
         background_url:"https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg'",
         text:"spooky",
-        glitchtype :"DefaultTextGlitch",
+        glitchtype :"None",
         requried_mp3s:"Mp3"
     },
     {
@@ -55,7 +55,7 @@ if(state[0].glitchtype === "DefaultTextGlitch"){
 }else if(state[0].glitchtype ==="None"){
     return (
         <div>
-            
+            <Start/>
         </div>
     )
 }else if(state[0].glitchtype ==="ComicBookText"){
