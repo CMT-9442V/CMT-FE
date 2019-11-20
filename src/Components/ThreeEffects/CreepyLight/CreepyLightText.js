@@ -157,9 +157,9 @@ export default function CreepyLightText(props) {
         }
         function animate() {
             requestAnimationFrame( animate, renderer.domElement );
-            stats.begin();
+
             render();
-            stats.end();
+     
         }
         function getStepSize( filterLen, tapsPerPass, pass ) {
             return filterLen * Math.pow( tapsPerPass, - pass );

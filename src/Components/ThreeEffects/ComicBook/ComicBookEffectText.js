@@ -33,7 +33,7 @@ export default function ComicBookEffectText(props) {
             //==================Text===================//
             var loader = new THREE.FontLoader();
             var font =loader.parse(fontJSON)
-            var geometry = new THREE.TextGeometry(textvar,{font:font, size: 160, height: 10, material: 0, bevelThickness: 1, extrudeMaterial:10})
+            var geometry = new THREE.TextGeometry(textvar,{font:font, size: 45, height: 10, material: 0, bevelThickness: 1, extrudeMaterial:10})
             var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
             var mesh = new THREE.Mesh(geometry,material)
             object.add(mesh)
@@ -64,12 +64,13 @@ export default function ComicBookEffectText(props) {
         }
         function animate() {
             requestAnimationFrame( animate );
-object.rotation.z += .01
+
             composer.render();
         }
     }, [props])
     return (
         <div>
+            <div id = "Channel-Div">{props.channel}</div>
             <div id = "Comic"></div>
         </div>
     )

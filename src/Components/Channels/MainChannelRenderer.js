@@ -4,15 +4,15 @@ import DefaultGlitch from '../ThreeEffects/DefaultGlitch/DefaultGlitch'
 import ComicBookEffect from '../ThreeEffects/ComicBook/ComicBookEffect'
 import ComicBookEffectText from '../ThreeEffects/ComicBook/ComicBookEffectText'
 import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
-
+import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
 
 export default function MainChannelRenderer() {
 const [state, setstate] = useState([
     {
         channel:"000",
-        background_url:"https://imgur.com/gallery/Bn6E1R0",
+        background_url:"https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg'",
         text:"spooky",
-        glitchtype :"CreepyLightText",
+        glitchtype :"DefaultTextGlitch",
         requried_mp3s:"Mp3"
     },
     {
@@ -40,7 +40,7 @@ if(state[0].glitchtype === "DefaultTextGlitch"){
             <DefaultTextGlitch text={state[0].text} channel={state[0].channel} background_url={state[0].background_url}/>
         </div>
         )
-}else if(state[0].glitchtype === "DefaultGlitch"){
+}else if(state[0].glitchtype === "static"){
     return (
         <div>
             
@@ -61,14 +61,22 @@ if(state[0].glitchtype === "DefaultTextGlitch"){
 }else if(state[0].glitchtype ==="ComicBookText"){
     return(
         <div>
-            <ComicBookEffectText text={state[0].text} channel={state[0].channel}  />
+            <ComicBookEffectText text={state[0].text} channel={state[0].channel}  background_url={state[0].background_url}/>
         </div>
     )
 }else if(state[0].glitchtype === "CreepyLightText"){
     return(
         <div>
-            <CreepyLightText text={state[0].text} channel={state[0].channel} />
+            <CreepyLightText text={state[0].text} channel={state[0].channel} background_url={state[0].background_url}/>
         </div>
+    )
+}else if (state[0].glitchtype === "ComicNoGeo"){
+    console.log(state[0].background_url,"Background URL")
+    return(
+        <div>
+            <ComicBookNoGeo text={state[0].text} channel={state[0].channel} background_url={state[0].background_url}/>
+        </div>
+
     )
 }
 
