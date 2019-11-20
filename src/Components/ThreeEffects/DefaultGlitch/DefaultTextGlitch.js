@@ -8,6 +8,7 @@ import "./Glitch.css"
 export default function DefaultTextGlitch(props) {
     const GlitchRef = useRef()
     useEffect(() => {
+        console.log(props,"PROOOOOOOOOP")
 //==================THREEJS Stuff===================//
 var camera, scene, renderer, composer;
 var object, light;
@@ -36,7 +37,7 @@ function init() {
     scene.add( object );
     //===============Background Loader=======================//
     let loader = new THREE.TextureLoader();
-    const bgTexture = loader.load("https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg");
+    const bgTexture = loader.load(props.background_url);
     scene.background = bgTexture;
 //   const canvasAspect = window.clientWidth / window.clientHeight;
 //   const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;

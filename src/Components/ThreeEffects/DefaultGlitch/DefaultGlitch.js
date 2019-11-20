@@ -82,7 +82,9 @@ function init() {
         return BufferGeometryUtils.mergeBufferGeometries( geometries );
     }
 
-
+    let loader = new THREE.TextureLoader();
+    const bgTexture = loader.load(props.background);
+    scene.background = bgTexture;
     //===============Light ====================//
     scene.add( new THREE.AmbientLight( 0x222222 ) );
     light = new THREE.DirectionalLight( 0xffffff );
@@ -112,7 +114,7 @@ function animate() {
     }, [GlitchRef])
     return (
         <div>
-            <div id = "Channel-Div"></div>
+<div id = "Channel-Div">{props.channel}</div>
             <div ref={GlitchRef} id ="wildGlitch"></div>
         </div>
     )
