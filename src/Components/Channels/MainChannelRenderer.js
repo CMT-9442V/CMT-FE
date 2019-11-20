@@ -3,6 +3,7 @@ import DefaultTextGlitch from '../ThreeEffects/DefaultGlitch/DefaultTextGlitch'
 import DefaultGlitch from '../ThreeEffects/DefaultGlitch/DefaultGlitch'
 import ComicBookEffect from '../ThreeEffects/ComicBook/ComicBookEffect'
 import ComicBookEffectText from '../ThreeEffects/ComicBook/ComicBookEffectText'
+import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
 
 
 export default function MainChannelRenderer() {
@@ -10,8 +11,8 @@ const [state, setstate] = useState([
     {
         channel:"000",
         background_url:"https://imgur.com/gallery/Bn6E1R0",
-        text:"bars",
-        glitchtype :"ComicBookText",
+        text:"spooky",
+        glitchtype :"CreepyLightText",
         requried_mp3s:"Mp3"
     },
     {
@@ -60,7 +61,13 @@ if(state[0].glitchtype === "DefaultTextGlitch"){
 }else if(state[0].glitchtype ==="ComicBookText"){
     return(
         <div>
-            <ComicBookEffectText text={state[0].text} />
+            <ComicBookEffectText text={state[0].text} channel={state[0].channel}  />
+        </div>
+    )
+}else if(state[0].glitchtype === "CreepyLightText"){
+    return(
+        <div>
+            <CreepyLightText text={state[0].text} channel={state[0].channel} />
         </div>
     )
 }
