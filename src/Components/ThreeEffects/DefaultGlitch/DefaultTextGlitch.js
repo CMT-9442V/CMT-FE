@@ -11,6 +11,7 @@ export default function DefaultTextGlitch(props) {
         console.log(props,"PROOOOOOOOOP")
 //==================THREEJS Stuff===================//
 var camera, scene, renderer, composer;
+console.log()
 var object, light;
 var glitchPass;
 let textvar = props.text
@@ -37,7 +38,7 @@ function init() {
     scene.add( object );
     //===============Background Loader=======================//
     let loader = new THREE.TextureLoader();
-    const bgTexture = loader.load(props.background_url);
+    const bgTexture = loader.load(props.background)
     scene.background = bgTexture;
 //   const canvasAspect = window.clientWidth / window.clientHeight;
 //   const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;

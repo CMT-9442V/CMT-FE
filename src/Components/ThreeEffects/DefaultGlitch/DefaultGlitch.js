@@ -13,8 +13,9 @@ export default function DefaultGlitch(props) {
 var camera, scene, renderer, composer;
 var object, light;
 var glitchPass;
-
-
+// let background = props.background.toString()
+// console.log(typeof props.background)
+console.log("google.com")
 init();
 animate();
 function updateOptions() {

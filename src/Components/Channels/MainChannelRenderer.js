@@ -7,14 +7,16 @@ import ComicBookEffectText from '../ThreeEffects/ComicBook/ComicBookEffectText'
 import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
 import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
 import Start from '../Start/Start'
+import StaticGlitch from '../ThreeEffects/StaticGlitch/StaticGlitch'
 export default function MainChannelRenderer() {
-    const [state,setState] = useState({glitchtype:"loading"})
+    const [state,setState] = useState({})
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
 Axios.get("https://ourtvgame.herokuapp.com/api/adv/initialize")
 .then((res) => {
 
     setState(res.data)
-
+    setLoading(true)
 }).catch((err) => {
     console.error(err)
 })
@@ -30,20 +32,70 @@ glitchtype: "static"
 id: 1
 text: """"*/
     console.log(state)
-if(state.glitchtype==="loading"){
-    console.log("state is loading...")
+// if(state.glitchtype==="loading"){
+//     console.log("state is loading...")
+//     return(
+//         <div>
+//          <StaticGlitch/>
+//         </div>
+//     )
+//  if(state.glitchtype === "static"){
+// if(state.glitchtype === null){
+//     return (
+//         <div></div>
+//     )
+// }else{
+//     return(
+//         <div>
+//             <DefaultTextGlitch background={state.background} text={state.text}/>
+//         </div>
+//             )
+// }
+if(loading===false){
     return(
         <div>
-          <DefaultGlitch />  
+            Loading
         </div>
     )
-}else if(state.glitchtype === "static"){
-    console.log("state.glitchtype is loaded")
+}else if(state.glitchtype==="static"){
     return(
         <div>
-            <DefaultGlitch background={state.background}/>
+            <DefaultGlitch background={state.background} text={state.text} channel={state.id}/>
         </div>
     )
+}else if(state.glitchtype ==="DefaultTextGlitch"){
+return (
+    <div>
+        <DefaultTextGlitch background={state.background} text={state.text} channel={state.id}/>
+    </div>
+)
+}else if (state.glitchtype === "ComicBook"){
+    return(
+        <div>
+            <ComicBookEffect background={state.background} text={state.text} channel={state.id}/>
+        </div>
+    )
+}else if(state.glitchtype === "ComicNoGeo"){
+    return (
+        <div>
+            <ComicBookNoGeo background={state.background} text={state.text} channel={state.id}/>
+        </div>
+    )
+}else if(state.glitchtype === "ComicBookText"){
+    return (
+        <div>
+            <ComicBookEffectText background={state.background} text={state.text} channel={state.id}/>
+        </div>
+    )
+}else if(state.glitchtype === "CreepyLightText"){
+    return(
+        <div>
+            <CreepyLightText background={state.background} text={state.text} channel={state.id}/>
+        </div>
+
+    )
+}
+
 }
 
 // const [state, setstate] = useState([
@@ -123,4 +175,4 @@ if(state.glitchtype==="loading"){
 
 //     )
 // }
-}
+
