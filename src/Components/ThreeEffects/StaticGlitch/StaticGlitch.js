@@ -111,6 +111,7 @@ export default function StaticGlitch(props) {
     }, [StaticRef])
     return (
         <div>
+            
             <div ref = {StaticRef} id ="wildGlitch"></div>
         </div>
     )
