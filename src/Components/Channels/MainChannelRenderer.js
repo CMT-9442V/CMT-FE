@@ -70,9 +70,6 @@ export default function MainChannelRenderer() {
                 console.error(err)
             })
         }
-    // return () => {
-    //     setState({})
-    // };
     }, [move])
    
     const KeyHandler = (e) => {

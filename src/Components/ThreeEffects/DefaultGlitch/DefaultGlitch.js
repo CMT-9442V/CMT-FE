@@ -17,7 +17,7 @@ import glitched_tones from '../../assets/audio/glitched_tones.mp3'
 import "./Glitch.css"
 
 export default function DefaultGlitch(props) {
-    const GlitchRef = useRef()
+     const GlitchRef = useRef()
     useEffect(() => {
 //==================THREEJS Stuff===================//
 var camera, scene, renderer, composer;
