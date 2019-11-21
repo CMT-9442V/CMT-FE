@@ -10,7 +10,7 @@ export default function ComicBookEffect(props) {
     useEffect(() => {
         var camera, scene, renderer, composer;
         var object, light;
-        let backgroundstr = props.background_url.toString()
+        let backgroundstr = props.background_url
         // const textvar = props.text
         init();
         animate();

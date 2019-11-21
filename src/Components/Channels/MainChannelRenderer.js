@@ -1,83 +1,178 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
+import Axios from 'axios'
 import DefaultTextGlitch from '../ThreeEffects/DefaultGlitch/DefaultTextGlitch'
 import DefaultGlitch from '../ThreeEffects/DefaultGlitch/DefaultGlitch'
 import ComicBookEffect from '../ThreeEffects/ComicBook/ComicBookEffect'
 import ComicBookEffectText from '../ThreeEffects/ComicBook/ComicBookEffectText'
 import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
 import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
-import Start from '../Start/Start'
+import styled from 'styled-components'
+
+const Div = styled.div`
+z-index:69;
+position: absolute;
+right:0;
+left:0;
+width:100vw;
+height:100vh;
+border:10px;
+`
+// haha lol
 export default function MainChannelRenderer() {
-const [state, setstate] = useState([
-    {
-        channel:"000",
-        background_url:"https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg'",
-        text:"spooky",
-        glitchtype :"None",
-        requried_mp3s:"Mp3"
-    },
-    {
-        channel:"001",
-        background_url:"some url",
-        text:"testing props text",
-        glitchtype :"DefaultTextGlitch",
-        requried_mp3s:"Mp3"
-    },
-    {
-        channel:"002",
-        background_url:"some url",
-        text:"testing props text",
-        glitchtype :"DefaultGlitch",
-        requried_mp3s:"Mp3"
-    }
-])
-// console.log(state)
-// console.log(state[0].text,"state.text")
-// console.log(state.glitchtype)
-if(state[0].glitchtype === "DefaultTextGlitch"){
-    return (
-        <div>
-          
-            <DefaultTextGlitch text={state[0].text} channel={state[0].channel} background_url={state[0].background_url}/>
-        </div>
-        )
-}else if(state[0].glitchtype === "static"){
-    return (
-        <div>
+    const [state,setState] = useState({})
+    const [loading, setLoading] = useState(false)
+    
+    const [move, setMove] = useState(undefined)
+
+
+    useEffect(() => {
+        Axios.get("https://ourtvgame.herokuapp.com/api/adv/initialize")
+            .then((res) => {
+
+                setState(res.data)
+                setLoading(true)
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+            Axios.post("move",state)
+            .then((res) => {
+                setState(res.data)
+                
+                setLoading(true)
+            })
+        // Axios
+        // .get("https://ourtvgame.herokuapp.com/api/adv/channels")
+        // .then( res => {
+        //     // console.log(res.data)
+        //     setState(res.data[0])
+        //     setLoading(true)
             
-            <DefaultGlitch/>
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        //  })
+
+    }, [])
+    console.log(state,"hey im a state mate")
+    useEffect(() => {
+        if(move !== undefined){
+        let values = {"direction":move,"id":state.channel}
+        console.log(values,"this is values")
+        Axios.post("https://ourtvgame.herokuapp.com/api/adv/move",values)
+            .then((res) => {
+                setState(res.data)
+                setLoading(true)
+                setMove(undefined)
+            }).catch((err) => {
+                console.error(err)
+            })
+        }
+    }, [move,state])
+   
+    const KeyHandler = (e) => {
+        console.log("renderer", e.key)
+        if(e.key === "ArrowUp"){
+            setMove("u")
+        }else if(e.key === "ArrowDown"){
+            setMove("d")
+        }
+
+        console.log(move)
+    // var keynum = getKey(e);
+    //         if(keynum === UP) {
+    //             //Move selection up
+    //             setMove(
+    //                 "u"
+    //             )
+    //             console.log(move,"this is out fsjoia;fjk;")
+    //         }
+            
+    //         if(keynum === DOWN) {
+    //             //Move selection down
+    //             setMove(
+    //                 "d"
+    //             )
+    //         }
+            
+
+}
+
+
+console.log()
+if(loading===false){
+    return(
+        <div>
+            Loading
         </div>
-        )
-}else if (state[0].glitchtype === "ComicBook"){
+    )
+}else if(state.glitchtype==="static"){
+    return(
+        <Div onKeyDown={e => {KeyHandler(e)}} tabIndex="1">            
+            <DefaultGlitch background={state.background} text={state.text} channel={state.channel} />
+            
+        </Div>
+        
+    )
+}else if(state.glitchtype ==="DefaultTextGlitch"){
+return (
+    <div
+      onKeyDown={e => {
+        KeyHandler(e);
+      }}
+      tabIndex="1"
+    >
+        <DefaultTextGlitch background={state.background} text={state.text} channel={state.id}/>
+    </div>
+)
+}else if (state.glitchtype === "ComicBook"){
+    return(
+        <div
+            onKeyDown={e => {
+                KeyHandler(e);
+            }}
+            tabIndex="1"
+        >
+            <ComicBookEffect background={state.background} text={state.text} channel={state.id}/>
+        </div>
+    )
+}else if(state.glitchtype === "ComicNoGeo"){
     return (
-    <div>
- <ComicBookEffect text={state[0].text} channel={state[0].channel} background_url={state[0].background_url}/>
-    </div>)
-}else if(state[0].glitchtype ==="None"){
+        <div
+            onKeyDown={e => {
+                KeyHandler(e);
+            }}
+            tabIndex="1"
+        >
+            <ComicBookNoGeo background={state.background} text={state.text} channel={state.id}/>
+        </div>
+    )
+}else if(state.glitchtype === "ComicBookText"){
     return (
-        <div>
-            <Start/>
+        <div
+            onKeyDown={e => {
+                KeyHandler(e);
+            }}
+            tabIndex="1"
+        >
+            <ComicBookEffectText background={state.background} text={state.text} channel={state.id}/>
         </div>
     )
-}else if(state[0].glitchtype ==="ComicBookText"){
+}else if(state.glitchtype === "CreepyLightText"){
     return(
-        <div>
-            <ComicBookEffectText text={state[0].text} channel={state[0].channel}  background_url={state[0].background_url}/>
-        </div>
-    )
-}else if(state[0].glitchtype === "CreepyLightText"){
-    return(
-        <div>
-            <CreepyLightText text={state[0].text} channel={state[0].channel} background_url={state[0].background_url}/>
-        </div>
-    )
-}else if (state[0].glitchtype === "ComicNoGeo"){
-    console.log(state[0].background_url,"Background URL")
-    return(
-        <div>
-            <ComicBookNoGeo text={state[0].text} channel={state[0].channel} background_url={state[0].background_url}/>
+        <div
+            onKeyDown={e => {
+                KeyHandler(e);
+            }}
+            tabIndex="1"
+        >
+            <CreepyLightText background={state.background} text={state.text} channel={state.id}/>
         </div>
 
     )
 }
 
 }
+
+
+

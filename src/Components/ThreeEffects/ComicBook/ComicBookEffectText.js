@@ -32,7 +32,7 @@ export default function ComicBookEffectText(props) {
             scene.add( object );
             //==================BG====================//
             let loader = new THREE.TextureLoader();
-            const bgTexture = loader.load("https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg");
+            const bgTexture = loader.load(props.background_url);
             scene.background = bgTexture;
             //==================Text===================//
            loader = new THREE.FontLoader();
