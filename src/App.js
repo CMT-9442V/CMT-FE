@@ -5,6 +5,7 @@ import MainChannelRenderer from './Components/Channels/MainChannelRenderer'
 import Signup from './Components/Auth/Signup';
 import Login from './Components/Auth/Login';
 import Start from './Components/TestBE/TestGet'
+import Map from './Components/map/Map';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
 
     <div className="App">
 
+      {/* <Route exact path = "/" component={Map}/> */}
       <Route exact path = "/" component={Home}/>
       <Route exact path = "/Game" component={MainChannelRenderer}/>
       <Route exact path= "/Login" component={Login}/>
