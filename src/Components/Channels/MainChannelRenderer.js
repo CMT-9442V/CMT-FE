@@ -68,7 +68,7 @@ export default function MainChannelRenderer() {
                 console.error(err)
             })
         }
-    }, [move,state])
+    }, [move])
    
     const KeyHandler = (e) => {
         console.log("renderer", e.key)
