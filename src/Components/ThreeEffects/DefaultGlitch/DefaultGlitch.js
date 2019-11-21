@@ -4,7 +4,7 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js'
 import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass.js'
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-
+import "./Glitch.css"
 
 export default function DefaultGlitch(props) {
     const GlitchRef = useRef()
