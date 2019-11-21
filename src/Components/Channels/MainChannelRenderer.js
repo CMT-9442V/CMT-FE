@@ -38,6 +38,7 @@ export default function MainChannelRenderer() {
             Axios.post("move",state)
             .then((res) => {
                 setState(res.data)
+                
                 setLoading(true)
             })
         // Axios
@@ -53,10 +54,10 @@ export default function MainChannelRenderer() {
         //  })
 
     }, [])
-    
+    console.log(state,"hey im a state mate")
     useEffect(() => {
         if(move !== undefined){
-        let values = {"direction":move,"id":state.id}
+        let values = {"direction":move,"id":state.channel}
         console.log(values,"this is values")
         Axios.post("https://ourtvgame.herokuapp.com/api/adv/move",values)
             .then((res) => {
@@ -108,7 +109,7 @@ if(loading===false){
 }else if(state.glitchtype==="static"){
     return(
         <Div onKeyDown={e => {KeyHandler(e)}} tabIndex="1">            
-            <DefaultGlitch background={state.background} text={state.text} channel={state.id} />
+            <DefaultGlitch background={state.background} text={state.text} channel={state.channel} />
             
         </Div>
         

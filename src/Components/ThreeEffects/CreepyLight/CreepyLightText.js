@@ -5,6 +5,7 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { GodRaysFakeSunShader, GodRaysDepthMaskShader, GodRaysCombineShader, GodRaysGenerateShader } from 'three/examples/jsm/shaders/GodRaysShader.js';
 import fontJSON from '../fonts/fontJSON.json'
 import "./CreepyLight.css"
+
 //Got Geometry from docs
 export default function CreepyLightText(props) {
 const ref = useRef()
