@@ -48,7 +48,7 @@ export default function ComicBookEffect(props) {
             }
             //=============BG======================//
             let loader = new THREE.TextureLoader();
-            const bgTexture = loader.load("https://threejsfundamentals.org/threejs/resources/images/daikanyama.jpg");
+            const bgTexture = loader.load(props.background_url);
             scene.background = bgTexture;
             //===========Light=====================//
             scene.add( new THREE.AmbientLight( 0x222222 ) );
