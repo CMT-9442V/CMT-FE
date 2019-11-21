@@ -106,14 +106,12 @@ function Map(props){
         grid-gap: 8px;
     
         div {
-          border: solid blue 1px;
           justify-content: center;
           align-items: center;
           clip-path: polygon(78% 0, 100% 53%, 79% 100%, 0 100%, 0 51%, 0 0);
         }
     
         div:nth-child(-n + 20):nth-child(n + 12) {
-          border: solid blue 1px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -121,7 +119,6 @@ function Map(props){
         }
     
         div:nth-child(-n + 40):nth-child(n + 32) {
-          border: solid blue 1px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -129,7 +126,6 @@ function Map(props){
         }
     
         div:nth-child(-n + 60):nth-child(n + 52) {
-          border: solid blue 1px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -137,7 +133,6 @@ function Map(props){
         }
     
         div:nth-child(-n + 80):nth-child(n + 72) {
-          border: solid blue 1px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -145,7 +140,6 @@ function Map(props){
         }
     
         div:nth-child(-n + 100):nth-child(n + 92) {
-          border: solid blue 1px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -153,14 +147,12 @@ function Map(props){
         }
     
         div:nth-child(20n-10) {
-          border: solid blue 1px;
           display: flex;
           justify-content: center;
           align-items: center;
           clip-path: polygon(100% 0, 100% 78%, 48% 100%, 0 81%, 0 51%, 0 0);
         }
         div:nth-child(20n-9) {
-          border: solid blue 1px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -168,7 +160,6 @@ function Map(props){
         }
     
         div:nth-child(91) {
-          border: solid blue 1px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -191,8 +182,8 @@ function Map(props){
               position: absolute;
               z-index: 100;
               color: white;
-              top: 18px;
               font-size: 25px;
+              margin: 0px;
         }
       `;
     

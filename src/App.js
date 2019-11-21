@@ -24,6 +24,7 @@ function App() {
 
   return (
 
+
     <div
       onClick={e => {
         change(e);
@@ -31,6 +32,7 @@ function App() {
       className="App"
       tabIndex="1"
     >
+
 
       {/* <Route exact path = "/" component={Map}/> */}
       <Route exact path = "/" component={Home}/>
