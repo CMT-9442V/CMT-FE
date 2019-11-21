@@ -6,8 +6,6 @@ import ComicBookEffect from '../ThreeEffects/ComicBook/ComicBookEffect'
 import ComicBookEffectText from '../ThreeEffects/ComicBook/ComicBookEffectText'
 import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
 import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
-import Start from '../Start/Start'
-import StaticGlitch from '../ThreeEffects/StaticGlitch/StaticGlitch'
 export default function MainChannelRenderer() {
     const [state,setState] = useState({})
     const [loading, setLoading] = useState(false)
@@ -34,7 +32,8 @@ if(loading===false){
 }else if(state.glitchtype==="static"){
     return(
         <div>
-            <DefaultGlitch background={state.background} text={state.text} channel={state.id}/>
+
+            <DefaultGlitch background={state.background} text={state.text} channel={state.id} />
         </div>
     )
 }else if(state.glitchtype ==="DefaultTextGlitch"){

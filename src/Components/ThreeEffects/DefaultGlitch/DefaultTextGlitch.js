@@ -89,6 +89,7 @@ function animate() {
             <div id = "Channel-Div">
                 {props.channel}
             </div>
+            
             <div ref={GlitchRef} id ="wildGlitch"></div>
         </div>
     )

@@ -5,6 +5,7 @@ import MainChannelRenderer from './Components/Channels/MainChannelRenderer'
 import Signup from './Components/Auth/Signup';
 import Login from './Components/Auth/Login';
 import Start from './Components/TestBE/TestGet'
+import CreepyLightText from './Components/ThreeEffects/CreepyLight/CreepyLightText';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route exact path = "/Game" component={MainChannelRenderer}/>
       <Route exact path= "/Login" component={Login}/>
       <Route exact path = "/Signup" component={Signup}/>
+      
     </div>
 
   );
