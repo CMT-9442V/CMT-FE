@@ -12,7 +12,7 @@ import ns1 from '../../assets/audio/ns1.mp3'
 import tv_static from '../../assets/audio/tv_static.mp3'
 import radio_static from '../../assets/audio/radio_static.mp3'
 import flatwoods from '../../assets/audio/flatwoods.mp3'
-import glitched_tones from '../../assets/audio/flatwoods.mp3'
+import glitched_tones from '../../assets/audio/glitched_tones.mp3'
 import './ComicBook.css'
 export default function ComicBookEffect(props) {
     useEffect(() => {
