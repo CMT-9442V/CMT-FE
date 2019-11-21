@@ -259,9 +259,6 @@ useEffect(() => {
             renderer.render( scene, camera );
         }
     }
-    return () => {
-        document.body.removeChild( renderer.domElement );
-    };
 }, [ref])
 return (
     <div>

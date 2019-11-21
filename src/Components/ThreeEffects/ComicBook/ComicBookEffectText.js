@@ -79,11 +79,8 @@ export default function ComicBookEffectText(props) {
 
             composer.render();
         }
-
-        return () => {
-            document.body.removeChild( renderer.domElement );
-        };
-
+        var elem = document.getElementById('Comic');
+elem.parentNode.removeChild(elem);
     }, [props])
     return (
         <div>

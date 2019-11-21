@@ -74,11 +74,8 @@ export default function ComicBookEffect(props) {
             object.rotation.y += 0.01;
             composer.render();
         }
-
-        return () => {
-            document.body.removeChild( renderer.domElement );
-        };
-
+        var elem = document.getElementById('Comic');
+elem.parentNode.removeChild(elem);
     }, [props])
     return (
         <div>

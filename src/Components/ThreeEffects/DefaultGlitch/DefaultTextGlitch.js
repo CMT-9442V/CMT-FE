@@ -91,11 +91,8 @@ function animate() {
     requestAnimationFrame( animate );
     composer.render();
 }
-
-return () => {
-    document.body.removeChild( renderer.domElement );
-};
-
+var elem = document.getElementById('wildGlitch');
+elem.parentNode.removeChild(elem);
     }, [props])
     return (
         <div>
