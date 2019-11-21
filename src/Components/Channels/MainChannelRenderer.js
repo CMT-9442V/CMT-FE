@@ -8,6 +8,8 @@ import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
 import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
 import styled from 'styled-components'
 
+import DefaultPurple from '../ThreeEffects/DefaultGlitch/DefaultPurple'
+
 const Div = styled.div`
 z-index:69;
 position: absolute;
@@ -41,17 +43,7 @@ export default function MainChannelRenderer() {
                 
                 setLoading(true)
             })
-        // Axios
-        // .get("https://ourtvgame.herokuapp.com/api/adv/channels")
-        // .then( res => {
-        //     // console.log(res.data)
-        //     setState(res.data[0])
-        //     setLoading(true)
-            
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        //  })
+ 
 
     }, [])
     console.log(state,"hey im a state mate")
@@ -68,10 +60,10 @@ export default function MainChannelRenderer() {
                 console.error(err)
             })
         }
-    }, [move,state])
+    }, [move])
    
     const KeyHandler = (e) => {
-        console.log("renderer", e.key)
+        // console.log("renderer", e.key)
         if(e.key === "ArrowUp"){
             setMove("u")
         }else if(e.key === "ArrowDown"){
@@ -97,20 +89,25 @@ export default function MainChannelRenderer() {
             
 
 }
+// useEffect(() => {
+//     effect
+//     return () => {
+//         cleanup
+//     };
+// }, [input])
 
-
-console.log()
+console.log("STATE",state)
 if(loading===false){
     return(
         <div>
-            Loading
+loading
         </div>
     )
 }else if(state.glitchtype==="static"){
     return(
         <Div onKeyDown={e => {KeyHandler(e)}} tabIndex="1">            
             <DefaultGlitch background={state.background} text={state.text} channel={state.channel} />
-            
+            {/* <DefaultClass background={state.background} text={state.text} channel={state.id}/> */}
         </Div>
         
     )
@@ -123,6 +120,7 @@ return (
       tabIndex="1"
     >
         <DefaultTextGlitch background={state.background} text={state.text} channel={state.id}/>
+        {/* <DefaultPurple background={state.background} text={state.text} channel={state.id}/> */}
     </div>
 )
 }else if (state.glitchtype === "ComicBook"){
@@ -133,6 +131,7 @@ return (
             }}
             tabIndex="1"
         >
+
             <ComicBookEffect background={state.background} text={state.text} channel={state.id}/>
         </div>
     )
@@ -144,6 +143,7 @@ return (
             }}
             tabIndex="1"
         >
+            
             <ComicBookNoGeo background={state.background} text={state.text} channel={state.id}/>
         </div>
     )
@@ -155,6 +155,7 @@ return (
             }}
             tabIndex="1"
         >
+            
             <ComicBookEffectText background={state.background} text={state.text} channel={state.id}/>
         </div>
     )

@@ -83,6 +83,9 @@ function animate() {
     requestAnimationFrame( animate );
     composer.render();
 }
+return () => {
+    document.body.removeChild( renderer.domElement );
+};
     }, [props])
     return (
         <div>

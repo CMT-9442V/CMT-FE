@@ -15,7 +15,7 @@ var object, light;
 var glitchPass;
 // let background = props.background.toString()
 // console.log(typeof props.background)
-console.log("google.com")
+
 init();
 animate();
 function updateOptions() {
@@ -112,6 +112,11 @@ function animate() {
     requestAnimationFrame( animate );
     composer.render();
 }
+
+    return () => {
+        document.body.removeChild( renderer.domElement );
+    };
+
     }, [GlitchRef])
     return (
         <div>
