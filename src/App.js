@@ -7,6 +7,7 @@ import Login from './Components/Auth/Login';
 import Start from './Components/TestBE/TestGet'
 import CreepyLightText from './Components/ThreeEffects/CreepyLight/CreepyLightText';
 import Map from './Components/map/Map';
+import "./App.css"
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 
   return (
 
+
     <div
       onClick={e => {
         change(e);
@@ -31,6 +33,7 @@ function App() {
       className="App"
       tabIndex="1"
     >
+
 
       {/* <Route exact path = "/" component={Map}/> */}
       <Route exact path = "/" component={Home}/>

@@ -7,6 +7,7 @@ import ComicBookEffectText from '../ThreeEffects/ComicBook/ComicBookEffectText'
 import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
 import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
 import styled from 'styled-components'
+import './mcr.css'
 
 import DefaultPurple from '../ThreeEffects/DefaultGlitch/DefaultPurple'
 
@@ -48,6 +49,7 @@ export default function MainChannelRenderer() {
     }, [])
     console.log(state,"hey im a state mate")
     useEffect(() => {
+        setState({})
         if(move !== undefined){
         let values = {"direction":move,"id":state.channel}
         console.log(values,"this is values")
@@ -96,82 +98,80 @@ export default function MainChannelRenderer() {
 //     };
 // }, [input])
 
-console.log("STATE",state)
-if(loading===false){
+
+    console.log(state, "Here is state")
+
     return(
         <div>
-loading
-        </div>
-    )
-}else if(state.glitchtype==="static"){
-    return(
-        <Div onKeyDown={e => {KeyHandler(e)}} tabIndex="1">            
-            <DefaultGlitch background={state.background} text={state.text} channel={state.channel} />
-            {/* <DefaultClass background={state.background} text={state.text} channel={state.id}/> */}
+        {state.glitchtype==="static" ? (
+            <div class={state.glitchtype!=="static" && "hidden"}>
+            <Div onKeyDown={e => {KeyHandler(e)}} tabIndex="1">
+                <DefaultGlitch background={state.background} text={state.text} channel={state.channel} audio={state.audio} />
+            </Div>
+            </div>
+        ) :  state.glitchtype==="DefaultTextGlitch" ? (
+            <div class={state.glitchtype!=="DefaultTextGlitch" && "hidden"}>
+        <Div
+
+            onKeyDown={e => {
+              KeyHandler(e);
+            }}
+            tabIndex="1"
+
+          >
+              <DefaultTextGlitch background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
+          </Div></div>) : state.glitchtype === "ComicBook" ? (
+              <div class={state.glitchtype!=="ComicBook" && "hidden"}>
+                <Div
+                      onKeyDown={e => {
+                          KeyHandler(e);
+                      }}
+                      tabIndex="1"
+                  >
+                      <ComicBookEffect background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
+                  </Div>
+                  </div>
+          ) : state.glitchtype === "ComicNoGeo" ? (
+            <div class={state.glitchtype!=="ComicNoGeo" && "hidden"}>
+            <Div
+
+            onKeyDown={e => {
+                KeyHandler(e);
+            }}
+            tabIndex="1"
+        >
+
+            <ComicBookNoGeo background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
         </Div>
-        
-    )
-}else if(state.glitchtype ==="DefaultTextGlitch"){
-return (
-    <div
-      onKeyDown={e => {
-        KeyHandler(e);
-      }}
-      tabIndex="1"
-    >
-        <DefaultTextGlitch background={state.background} text={state.text} channel={state.id}/>
-        {/* <DefaultPurple background={state.background} text={state.text} channel={state.id}/> */}
-    </div>
-)
-}else if (state.glitchtype === "ComicBook"){
-    return(
-        <div
+
+        </div>
+          ) :  state.glitchtype === "ComicBookText" ? (
+            <div class={state.glitchtype!=="ComicBookText" && "hidden"}>
+            <Div
             onKeyDown={e => {
                 KeyHandler(e);
             }}
             tabIndex="1"
         >
 
-            <ComicBookEffect background={state.background} text={state.text} channel={state.id}/>
-        </div>
-    )
-}else if(state.glitchtype === "ComicNoGeo"){
-    return (
-        <div
-            onKeyDown={e => {
-                KeyHandler(e);
-            }}
-            tabIndex="1"
-        >
-            
-            <ComicBookNoGeo background={state.background} text={state.text} channel={state.id}/>
-        </div>
-    )
-}else if(state.glitchtype === "ComicBookText"){
-    return (
-        <div
-            onKeyDown={e => {
-                KeyHandler(e);
-            }}
-            tabIndex="1"
-        >
-            
-            <ComicBookEffectText background={state.background} text={state.text} channel={state.id}/>
-        </div>
-    )
-}else if(state.glitchtype === "CreepyLightText"){
-    return(
-        <div
-            onKeyDown={e => {
-                KeyHandler(e);
-            }}
-            tabIndex="1"
-        >
-            <CreepyLightText background={state.background} text={state.text} channel={state.id}/>
-        </div>
+            <ComicBookEffectText background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
+        </Div>
 
+        </div>
+          ) : state.glitchtype === "CreepyLightText" ? (
+            <div class={state.glitchtype!=="CreepyLightText" && "hidden"}>
+            <Div
+            onKeyDown={e => {
+                KeyHandler(e);
+            }}
+            tabIndex="1"
+        >
+            <CreepyLightText background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
+        </Div>
+        </div>
+          ) : null}
+        </div>
     )
-}
 
 }
 

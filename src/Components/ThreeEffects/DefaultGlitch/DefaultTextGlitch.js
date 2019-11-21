@@ -4,6 +4,14 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js'
 import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass.js'
 import fontJSON from '../fonts/fontJSON.json'
+import Sound from 'react-sound'
+import ns3 from '../../assets/audio/ns3.wav'
+import ns2 from '../../assets/audio/ns2.mp3'
+import ns1 from '../../assets/audio/ns1.mp3'
+import tv_static from '../../assets/audio/tv_static.mp3'
+import radio_static from '../../assets/audio/radio_static.mp3'
+import flatwoods from '../../assets/audio/flatwoods.mp3'
+import glitched_tones from '../../assets/audio/glitched_tones.mp3'
 import "./Glitch.css"
 export default function DefaultTextGlitch(props) {
         const GlitchRef = useRef()
@@ -83,9 +91,11 @@ function animate() {
     requestAnimationFrame( animate );
     composer.render();
 }
+
 return () => {
     document.body.removeChild( renderer.domElement );
 };
+
     }, [props])
     return (
         <div>
@@ -94,6 +104,51 @@ return () => {
             </div>
             
             <div ref={GlitchRef} id ="wildGlitch"></div>
+                   <div>
+                {props.audio==="tv_static" ? (
+                     <Sound
+                     url={tv_static}
+                     playStatus={Sound.status.PLAYING}
+                     loop
+                     />  
+                ) : props.audio==="radio_static" ? (
+                    <Sound
+                     url={radio_static}
+                     playStatus={Sound.status.PLAYING}
+                     loop
+                     />  
+                ) : props.audio==="glitched_tones" ? (
+                    <Sound
+                     url={glitched_tones}
+                     playStatus={Sound.status.PLAYING}
+                     loop
+                     />  
+                ) : props.audio==="flatwoods" ? (
+                    <Sound
+                     url={flatwoods}
+                     playStatus={Sound.status.PLAYING}
+                     loop
+                     />  
+                ) : props.audio==="ns1" ? (
+                    <Sound
+                     url={ns1}
+                     playStatus={Sound.status.PLAYING}
+                     loop
+                     />  
+                ) : props.audio==="ns2" ? (
+                    <Sound
+                     url={ns2}
+                     playStatus={Sound.status.PLAYING}
+                     loop
+                     />  
+                ) : props.audio==="ns3" ? (
+                    <Sound
+                     url={ns3}
+                     playStatus={Sound.status.PLAYING}
+                     loop
+                     />  
+                ) : null}
+            </div> 
         </div>
     )
 }
