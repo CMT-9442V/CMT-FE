@@ -9,6 +9,8 @@ import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
 import styled from 'styled-components'
 import './mcr.css'
 
+import DefaultPurple from '../ThreeEffects/DefaultGlitch/DefaultPurple'
+
 const Div = styled.div`
 z-index:69;
 position: absolute;
@@ -42,17 +44,7 @@ export default function MainChannelRenderer() {
                 
                 setLoading(true)
             })
-        // Axios
-        // .get("https://ourtvgame.herokuapp.com/api/adv/channels")
-        // .then( res => {
-        //     // console.log(res.data)
-        //     setState(res.data[0])
-        //     setLoading(true)
-            
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        //  })
+ 
 
     }, [])
     console.log(state,"hey im a state mate")
@@ -73,7 +65,7 @@ export default function MainChannelRenderer() {
     }, [move])
    
     const KeyHandler = (e) => {
-        console.log("renderer", e.key)
+        // console.log("renderer", e.key)
         if(e.key === "ArrowUp"){
             setMove("u")
         }else if(e.key === "ArrowDown"){
@@ -99,6 +91,13 @@ export default function MainChannelRenderer() {
             
 
 }
+// useEffect(() => {
+//     effect
+//     return () => {
+//         cleanup
+//     };
+// }, [input])
+
 
     console.log(state, "Here is state")
 
@@ -113,10 +112,12 @@ export default function MainChannelRenderer() {
         ) :  state.glitchtype==="DefaultTextGlitch" ? (
             <div class={state.glitchtype!=="DefaultTextGlitch" && "hidden"}>
         <Div
+
             onKeyDown={e => {
               KeyHandler(e);
             }}
             tabIndex="1"
+
           >
               <DefaultTextGlitch background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
           </Div></div>) : state.glitchtype === "ComicBook" ? (
@@ -133,13 +134,16 @@ export default function MainChannelRenderer() {
           ) : state.glitchtype === "ComicNoGeo" ? (
             <div class={state.glitchtype!=="ComicNoGeo" && "hidden"}>
             <Div
+
             onKeyDown={e => {
                 KeyHandler(e);
             }}
             tabIndex="1"
         >
+
             <ComicBookNoGeo background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
         </Div>
+
         </div>
           ) :  state.glitchtype === "ComicBookText" ? (
             <div class={state.glitchtype!=="ComicBookText" && "hidden"}>
@@ -149,8 +153,10 @@ export default function MainChannelRenderer() {
             }}
             tabIndex="1"
         >
+
             <ComicBookEffectText background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
         </Div>
+
         </div>
           ) : state.glitchtype === "CreepyLightText" ? (
             <div class={state.glitchtype!=="CreepyLightText" && "hidden"}>
