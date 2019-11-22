@@ -65,8 +65,8 @@ S.TvGrid = styled.div`
         z-index: 3;
         grid-row: 1/5;
         grid-column: 1/11;
-        width: 100%;
-        height: 100%;
+        width: 549px;
+        height: 360px;
     `
 
     S.Img2 = styled.img`
@@ -74,8 +74,8 @@ S.TvGrid = styled.div`
         grid-row: 1/5;
         grid-column: 1/11;
 
-        width: 90%;
-        height: 90%;
+        width: 494px;
+        height: 324px;
         justify-self: center;
         margin-top: 10px;
     `
@@ -153,64 +153,3 @@ function VMain(props){
 }
 
 export default withRouter(VMain);
-
-
-// import React from 'react';
-// import styled from "styled-components";
-// import tvImg from "../assets/images/tv.png"
-// import barsImg from "../assets/images/nosignal2.jpg"
-
-// const S = {}
-
-// S.Container = styled.div`
-//     width: 100vw;
-//     // height: 100vh;
-//     box-sizing: border-box;
-//     background-color: #F5E9E3;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-
-//     h1 {
-//         font-family: 'Rokkitt', serif;
-//         font-size: 141px;
-//         color: #2E281F;
-//         margin: 0px;
-//     }
-
-
-// `
-
-// S.Descript = styled.div`
-//     font-size: 43px;
-//     font-family: 'Rokkitt', serif;
-//     color: #2E281F;
-// `
-
-// S.TvGrid = styled.div`
-//     width: 50px;
-//     height: 360px;
-//     border: solid black 1px;
-
-// `
-
-// function VMain(props){
-
-//     return(
-//         <S.Container>
-//             <h1>CMT-9442V</h1>
-//             <S.Descript>
-//                 A game for those<br/>who hear voices<br/>in the static
-//             </S.Descript>
-//             {/* <img src = {barsImg} /> */}
-//             <S.TvGrid>
-//                 {/* <img src = {tvImg} /> */}
-//             </S.TvGrid>
-
-            
-
-//         </S.Container>
-//     )
-// }
-
-// export default VMain;
