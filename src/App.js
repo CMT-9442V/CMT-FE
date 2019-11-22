@@ -34,6 +34,7 @@ function App() {
 
       {/* <Route exact path = "/" component={Map}/> */}
       <Route exact path = "/" component={Home}/>
+      <Route exact path="/Map" component={Map}/>
       <Route exact path = "/Game" component={MainChannelRenderer}/>
       <Route exact path= "/Login" component={Login}/>
       <Route exact path = "/Signup" component={Signup}/>

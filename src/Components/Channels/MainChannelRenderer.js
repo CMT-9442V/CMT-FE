@@ -7,8 +7,7 @@ import ComicBookEffectText from '../ThreeEffects/ComicBook/ComicBookEffectText'
 import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
 import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
 import styled from 'styled-components'
-
-import DefaultPurple from '../ThreeEffects/DefaultGlitch/DefaultPurple'
+import AxiosWithAuth from './AxiosWithAuth'
 
 const Div = styled.div`
 z-index:69;
@@ -28,7 +27,7 @@ export default function MainChannelRenderer() {
 
 
     useEffect(() => {
-        Axios.get("https://ourtvgame.herokuapp.com/api/adv/initialize")
+        AxiosWithAuth().get("https://ourtvgame.herokuapp.com/api/adv/initialize")
             .then((res) => {
 
                 setState(res.data)
@@ -51,7 +50,7 @@ export default function MainChannelRenderer() {
         if(move !== undefined){
         let values = {"direction":move,"id":state.channel}
         console.log(values,"this is values")
-        Axios.post("https://ourtvgame.herokuapp.com/api/adv/move",values)
+        AxiosWithAuth().post("https://ourtvgame.herokuapp.com/api/adv/move",values)
             .then((res) => {
                 setState(res.data)
                 setLoading(true)
@@ -100,13 +99,13 @@ console.log("STATE",state)
 if(loading===false){
     return(
         <div>
-loading
+Ñ̷̡̢̨̢̨̡̨̢̧̡̛̛̛̹̬̠͙̙͉̝̰̥͉̺̳̥̤̼̭̺̙͕̤̹̟̤̝̫̭̻̙̲̻͚̖̘̯̭̝̯̩̟̙͓̯͚̫̪͉̠͉̗̰̟̲͔̭̰͕̩̠̰̰͇̣͖̳̞̤̳̖̲̟̪̣̝̩̥͖̗̞̠͉̫̪̩̜͖̭̽̽̾̈́̔̔̅̓̆͗͋̋͛̌̋͌̈́̈̈̌̀̅̈͗̋̈͛͑̒̿͗̇͒̒̏̇͆͛͑͊̓̓̍́͆̔̉̔́̎͋͗̾͒̽̅́͂̅̂͗̃͑̂̏̉̍̓̅̏̈̑̇̑͐̂̃̎̍̉̃̌́̋͂́̎͊͗̾̒͆͒͗̏̑́̆͑͒̌̾́͐̅͋̂̐̀̆̐̉͑̏́̅͑͛̅͂̓̾̒͛̍̑̋̒͑̍̅̉̓̀̎̊̌̅́̀̓͛͆̾̄͐͊͌̀͋̄̎̄̌͊̓̅͂̐̀͛̒͊̅͑̀͊̾͋͋̆̄̍́́͂͆̓͐͐͌̋̎̈́́̑̈́̌̌̓̇̽̌͛̍͐͐̈́̎̌͐̀̀̀̿̒͐̋̎̈́̀͗̓̾̏̒̑̄̾̃͛̈́́̃͆̀̾̄̏̉̂̔̍͐͋͑̕̚̚̕͘͘͘̚̚̕̕͘͘͘͘̕̕͘̚͜͠͠͝͝͝͝͝͠͠͝͠͝͠͝͝͠͝ͅͅͅO̵̡̧̡̢̨̡̢̡̧̢̨̧̢̧̨̧̢̨̡̨̡̨̡̨̡̢̨̨̨̢̨̨͈̫͖͎̱̼̳̭̞̬͍̲̠̱̣̠͙̫̞̝̪̰͈͓̘͚̳̦̺̣͇̘̩͓͎̹͙͇̹̙͕̟̬̜̼̪̼͈̫̩̠̳̤̺̥̮̼̹̞̻̯̺̠̜̗̠̘̰̬̮̥̙̺̫͉̪̫͕̰̦̪̳̗͍̖̟͚̱͓̼̼̝̠̲͍̘͙̻̮̙̟̯̜̩̟͖̯̲͖̰̪͉͓̼̫̲̜̻̼̟̲̬̙͕͚̩̻̜̥̯͎̤͔̺͉̜̪̦͍̠̺̻̤̘͍̜͍̖̪͍̱͓̳̙̮̗̪̰̗̟̟̯̭̪͈̖͔̝̗͇̮̟̙̰̞͉̙̥̼̺̰̟̠̻̲̠̗̩̫̙̤̹̖̗̬̥̣͕͒͑̎͂̈́͐̇̾̀̈́̀͑̒̓̂̋̆̊̃͗̔̈́͜͜͜͜͜͜͜͝ͅͅͅͅͅͅ ̵̢̢̢̨̧̢̧̢̨̢̢̢̢̨̡̢̨̡̨̨̧̛̛̛̛͙͍̮͍̘̖̟̞͈̘̹͔͚͉͔̳̱̹̲̼͍̖̗̫͈̣̰̟̳͙̥̞̰̥͈̣̖̫̭̫̠̭̦̫͕͔̭̮̗̳̩̺͇̥̹̱͎͍̞̣̲̲̮̪̰͇̰̭̬͙͕̥̦̻̺̯͚̦̙̜͉̤͖̼͖̩̰͖̭͕̗̬̜͎̺̲͎͚̳̺͚̣̘̠̼̝̰̤̺͙̙̱̣͓͇̯̹̻͚̦̩͍̭̘̻͇͍̖̳͈̼̟͇͇̭̟̭̹̭̦͇̻̠̜͚̦̦͇̖̰͇͚̹̥̜̳̲̞̙̪̹̥̭̣̻̠̱̩̬̭̝̞̭͔͕̺̥̙̤͇̭̘̘͈̫̠̙̪͈̣̹͎͕̯̭̩͔̹̜̦̣̜̱͇̩͎̱̘̱͚̖̰͎̘̘̻̗̪̹̻̭̺̘̭͙̫̖͕̦͔̹̞̜̺̠̙͕͚͈͎̟͈͚̤̻̫̤͍͈̰͚̬̰̳̻͈̎̃͛̀̃́͑͑̇͋̂͑͗̌̎̆͋̆̓́͆͌̊͐̔̎̐̆̆͛͗̈́̀̋͌̈́̏́̈́̃̓̂͛̇̉̉̃̽̄͋̈́̀̓̍̓́̄̀̀̅̇̉͌͒̍̋̒̈́̍͌̌̊͐̆̉̒̽͋̍̑͂̾̓̀̂͂̏̆̈́͑̈́̔̏̓͗̑̊͌̈́̒̑͘̕͘̕͘͘̚͘̕̕͘͜͜͜͜͜͜͜͠͝͠͝͝͠͝ͅͅͅͅͅͅͅͅͅͅͅͅͅͅŞ̸̡̢̨̡̢̢̡̡̡̛̛̘̳̝͙͎̼̼̣̞͎̯͈̹̦̯̺̦͍̘̻̼̗̲͉̤̣̻̺̺̩͍̤͎̥͎͓̗͚̰̤̠̤͔͖̭̼̘͓̳͙̫̘̜̘͚͔͖̥̠̱̞̤̫̪̺͙̥̥̳̟̟͖̖̬̤̪͉̙̤͇̞̘̙͕͚͍͔̼̥͍͙͈̮͚͙͕̟̺̝͎̬̩͕͓̭͙͚̿̈́̓̀̀̀̏̏̀̏̈̏͂͂͐̃̊̈́͛̂̑̐͆́̿̐͒̒̐̋͐̀̏̔͊̋́͆̍̈͛̿̾̉́͆͑̋̊́̀̀̈́̐̍͋͛̽́̀͛͆̐̒̿̿̓̀́̈͊̉̓̀̏́̄̓̏̂̍͂͂̀͛͊̈́̇̑̑̋̇̒͌̌͌̀̀͆̌͂͊͆̓̈́̒͂̌̂͛͗̈́̇̈́͑͊̍̓́̉̄̾̂̋͐̒͒͊̔̒̒͂̈́͋̌͒̒͐̓̐͂̿͗̀̓́̒̏̏͛͌͆̎͛̈́̏͊̓̀͋̀̓͛̈̎̀̔̈́̉̐͆̎̈͒͐͊̈́̓̀̉͒̎̚̚͘̕͘͘̚̚͜͜͝͝͝͠͝͝͝͝͝͠͝͝ͅͅͅI̴̡̢̧̨̧̨̧̢̨̧̧̢̢̨̢̢̧̨̡̨͚̞̳̻͇͇͓̦͇̬͙̜̝͎̞͙̬̘͖̠͚͉̼̥̥̠̣̠̜͍̣̩̲̲̝͖̱͎͈̻̣͖̘͎͎͇̣̻͕͈͓͖͓͇̖͔͚̼͚͖̬͙̰̳͔̭͕̝̭̰͔͕̲͓̰̘̠̖̤̤̩͍̼̖̬̥̘̫̜̮͖̺̤̭͔͚̖̖̝̪͈̱̘̺̗͎͉̤̮̬͈̭͍̼̱͙͍̩̻͍̗̫̮̞̬̥̲̪̲̠͖̖̜̥̺̱̰̠͚̣̘̭̖̣͈̺͍̖͈͓͖̦̘̝̯͉͉̯͕͙̲̤͈͔̻̞̣͖̯̥̪͎̳̦͔̤̗͓͈̝̯̙̜̹͚̞̼̥͈̻̪̟̟̫̥̺̼̘͔͓̭̼̪͙̱̩͕̯̹̥̹͇̣̰̭̳̩̱͊̋̀̅̅̀͐̍̿̊̏̒͑̅̅̓̈́̐͜͜͜͝͝ͅͅͅͅͅͅǦ̵̢̨̡̧̢̡̧̨̡̨̡̨̧̡̨̨̢̛̛̛͖͚̳̰̗̻̳̖͙̙̝̘͎͓̻͎̤̫̣͓̖̱͙͚̬͇͎̰̺͈̝̪̯̗̝̜̭̲͕̗̞̟̩̩̪̻͉͎̼͎̜͍̫̫̩͖͚̘̱̬̫̘͖̥̱͍̗̼̤̭̩̤̰͎̞͍͓̤̩̤͕̤̹͍̲͓͍̘̫͖̜̰̣̺̬̘̺͖̼̣̬͈̟̼̬͎̼͔̲͚̼͍̗̗̜̝̩̞͈̤̫͉̩͈̼͕̞̭̘̭̖͉̱̜͚̮͚͇̲̘̮̻̲̦͈̭͙͉̯͖̱͎͓̺̼̳̻͙̻̦̖̫̟̯͙̰̫͍̘̣͕͕͙͔̭͖̺̜͓̲͚̟̤̼͙͇͙̣̘̝̦͍̜̜͉͖͙̜̜̭͈͉͚̱̱̹̪͙͚͉̦̭̤̩͚̘̳̳͚̯̠̤͔̬͑͌͆̈́͑̏͂͆͗̃́͒̃̋̾͂̅͆͊̏̆̿̈́͗̈́̅͛̌̽͂̉̈́̇́̄͑̐̀̂̈͑͆̇̈́̿̑͐̀̈́̆̄͒͊̾̍͆̅͒̀̓̃̇̑̊̇̍͋̏̅̈́͒͆͘͘̚͘͘̕͘̕͜͜͜͜͜͜͜͜͜͜͝͝͠͠ͅͅͅͅͅͅͅN̸̛̛̛̛̛̛̛̛̛̤̼͕̜̘̤̠̦͓̾͛̊͂̏̿̃̈́̓̍͐́̇̓̌͐̉͐̈́̄͐́̈̉̎̈́̀̏̋͒̿̈̅̏̇̇̈́̆̊͌̃̿́̓͐̂͐̿͒͂͐̉̄̉̆̔̌͊̄͗̃͛̔̈́̈͌͐̏̊̉̉̎̌̾̊̈̾͊̉̔̑̅̐̽̓́͂̎̑͑͑́̿͗͐́͒̀̆͋͋͗̈́͋͛̀̔̿̀͗̆̿̔̉̍̐͌͛̔̾́̂͛̔̄̄̒̾̋̑͌̾̋͒͗͑̂̆̐̉͆̆̊̂͗͆̂̍̉̆̀͊͑̏̽̅́̅̓̈̇̾̓̈͆̓͗͐͑̒̉̈́̒̂̓͑̓̒̒̉̏̑̓̋͊̈͌̋͌̐̐̅̀̓̑́͗̋͊̈̒͋͐̈̾̌̓̌͂̕̕͘̕͘͘͘͘͘̚͘̚̚̕͝͝͝͝͝͝͠͠͝͠͝͝͝͝͝͠͝͝ͅA̵̢̧̡̡̧̨̨̛̛̛͙͚̫̱̝̣̯̬̩̟͈̥̱̗̱̮̩͉͕͍̯̮͉͇̬̪̺̦͎̩̗̼̹̬̖̼͕͖̱͇̥̰͚̘̲̰̝̻̲̦͇̤͕̳͚͖̞͕̬̹͖̪̞̙͉̥͇̩̫̤͙̣̿̌͑̊͆̿͂͒̀̈́͗͌̓̐͐͗̆͛̓̄̎̐̾͗͗̆͑͂͗̍̽͑̄̆͑̈̈́̐̌́̓̀͌̔̀̾̍̀̅͗̀̓̈̔̄̌̈̃̃͆͐̾͌̎̌̍͒̌͑̈́́͑̀̆͐̿̿̍́̾͆̊͗̃͌̑̉͋̄̒͐͗͗͒̓̍̀͑͂͐͂̈̃̎͆͋̊̒̆͒̀̎́̒͋͐̊͐̈́̊̂͌̔̊͆͋̍̓͒͂̂͒̓̋̍͒̉̄͊̈́̾̃̎͛̈́̍̇̈́̀̈̃͐͗̽̀͒͌̇̆́̔̈́̓͊͐̅̑̓̾̄̈́̊̀̇͛͑͋̌́͌͒̈́͌̈̋̉̇͗̍͐̓͌̐̔̌̿̈́̊̓͂͌̓͒̃͑̒̈́́͆̀̃̏̐̈́̚̚̚̚̚̕͘͘̚̕̕̚̕̚̕̕̚͜͜͜͝͝͠͠͝͠͝͝͝͠͠ͅͅͅL̸̡̨̢̡̧̡̢̨̡̢̢̨̨̡̧̡̡̢̢̧̧̡̛̖̯̺̰̠͖̬̥̥̘̫̯̪̠̪͎͔͇̣̬̣̫̩̠̜͍̖̬̬͚̰̫̜̱̺̳̻̮̥̳̮̲̦͉̗̼͍̥̦̞̗̙̘̬̯̣̝̘̟̩͕̲̖̩̹̜̦̣͚̜͉͎̻̘̞̤̤̻̹͕͍̮̻̺̜̹̭̦̼͔̦̭̟̦͚̙̺̗̳̣̙͓̥͕̼̘̭̺̘͔̦̻̪̰̜͖͇̝̙̲̙͓̰̜̤̫͙͎̣̩̼̖̝̤̣͓̩̥̞͚̗̹͎̜̞̟̮̖͈̠̫͚̩͙̙̮̙̹͚̲͚͚̣̮̮̦̻̜͓̦͍̤͇̹͚̠̫̼̱͔̼̼̳̱͓̭͓̀̀̇̅̑̑͑̉̐͐͒̅̀̈́̌͐̌̅̈́͐͛͌̔̎̇̓̈̽̋͐͂̋͐̑̃͋́̓̈́̿̀͂̾̀̈́̃̄̀̌́̈́̅͒͒͑͊̽̅̂͊͒̉̽̈́̒̔̌͌͆̅̊͋̔͆̔̔͆̕͘̚͘͜͜͜͝͠͝͝͠ͅͅ
         </div>
     )
 }else if(state.glitchtype==="static"){
     return(
         <Div onKeyDown={e => {KeyHandler(e)}} tabIndex="1">            
-            <DefaultGlitch background={state.background} text={state.text} channel={state.channel} />
+            <DefaultGlitch background={state.background} text={state.text} channel={state.channel} audio={state.audio}/>
             {/* <DefaultClass background={state.background} text={state.text} channel={state.id}/> */}
         </Div>
         
@@ -119,7 +118,7 @@ return (
       }}
       tabIndex="1"
     >
-        <DefaultTextGlitch background={state.background} text={state.text} channel={state.id}/>
+        <DefaultTextGlitch background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
         {/* <DefaultPurple background={state.background} text={state.text} channel={state.id}/> */}
     </div>
 )
@@ -132,10 +131,10 @@ return (
             tabIndex="1"
         >
 
-            <ComicBookEffect background={state.background} text={state.text} channel={state.id}/>
+            <ComicBookEffect background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
         </div>
     )
-}else if(state.glitchtype === "ComicNoGeo"){
+}else if(state.glitchtype === "ComicBookNoGeo"){
     return (
         <div
             onKeyDown={e => {
@@ -144,7 +143,7 @@ return (
             tabIndex="1"
         >
             
-            <ComicBookNoGeo background={state.background} text={state.text} channel={state.id}/>
+            <ComicBookNoGeo background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
         </div>
     )
 }else if(state.glitchtype === "ComicBookText"){
@@ -156,7 +155,7 @@ return (
             tabIndex="1"
         >
             
-            <ComicBookEffectText background={state.background} text={state.text} channel={state.id}/>
+            <ComicBookEffectText background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
         </div>
     )
 }else if(state.glitchtype === "CreepyLightText"){
@@ -167,7 +166,7 @@ return (
             }}
             tabIndex="1"
         >
-            <CreepyLightText background={state.background} text={state.text} channel={state.id}/>
+            <CreepyLightText background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
         </div>
 
     )
