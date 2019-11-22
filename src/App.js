@@ -37,8 +37,12 @@ function App() {
 
 
       {/* <Route exact path = "/" component={Map}/> */}
+
+      <Route exact path="/Map" component={Map}/>
+
       <Route exact path = "/" component={Home2}/>
       {/* <Route exact path = "/" component={Home}/> */}
+
       <Route exact path = "/Game" component={MainChannelRenderer}/>
       <Route exact path= "/Login" component={Login}/>
       <Route exact path = "/Signup" component={Signup}/>

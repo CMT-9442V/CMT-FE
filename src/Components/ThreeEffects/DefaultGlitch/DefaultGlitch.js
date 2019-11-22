@@ -15,6 +15,14 @@ import radio_static from '../../assets/audio/radio_static.mp3'
 import flatwoods from '../../assets/audio/flatwoods.mp3'
 import glitched_tones from '../../assets/audio/glitched_tones.mp3'
 import "./Glitch.css"
+import Sound from 'react-sound'
+import ns3 from '../../assets/audio/ns3.wav'
+import ns2 from '../../assets/audio/ns2.mp3'
+import ns1 from '../../assets/audio/ns1.mp3'
+import tv_static from '../../assets/audio/tv_static.mp3'
+import radio_static from '../../assets/audio/radio_static.mp3'
+import flatwoods from '../../assets/audio/flatwoods.mp3'
+import glitched_tones from '../../assets/audio/glitched_tones.mp3'
 
 export default function DefaultGlitch(props) {
      const GlitchRef = useRef()

@@ -40,8 +40,8 @@ export default function ComicBookEffect(props) {
             scene.add( object );
             //==================Text===================//
             //==============BG========================//
-            const loader = new THREE.TextureLoader();
-            const bgTexture = loader.load(backgroundstr);
+            let loader = new THREE.TextureLoader();
+            const bgTexture = loader.load(props.background);
             scene.background = bgTexture;
 
             scene.add( new THREE.AmbientLight( 0x222222 ) );

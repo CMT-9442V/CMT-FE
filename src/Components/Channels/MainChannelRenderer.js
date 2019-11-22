@@ -7,7 +7,9 @@ import ComicBookEffectText from '../ThreeEffects/ComicBook/ComicBookEffectText'
 import CreepyLightText from '../ThreeEffects/CreepyLight/CreepyLightText'
 import ComicBookNoGeo from '../ThreeEffects/ComicBook/ComicBookNoGeo'
 import styled from 'styled-components'
-import './mcr.css'
+
+import AxiosWithAuth from './AxiosWithAuth'
+
 
 const Div = styled.div`
 z-index:69;
@@ -27,7 +29,7 @@ export default function MainChannelRenderer() {
 
 
     useEffect(() => {
-        Axios.get("https://ourtvgame.herokuapp.com/api/adv/initialize")
+        AxiosWithAuth().get("https://ourtvgame.herokuapp.com/api/adv/initialize")
             .then((res) => {
 
                 setState(res.data)
@@ -61,7 +63,7 @@ export default function MainChannelRenderer() {
         if(move !== undefined){
         let values = {"direction":move,"id":state.channel}
         console.log(values,"this is values")
-        Axios.post("https://ourtvgame.herokuapp.com/api/adv/move",values)
+        AxiosWithAuth().post("https://ourtvgame.herokuapp.com/api/adv/move",values)
             .then((res) => {
                 setState(res.data)
                 setLoading(true)
@@ -104,42 +106,57 @@ export default function MainChannelRenderer() {
 
     return(
         <div>
-        {state.glitchtype==="static" ? (
-            <div class={state.glitchtype!=="static" && "hidden"}>
-            <Div onKeyDown={e => {KeyHandler(e)}} tabIndex="1">
-                <DefaultGlitch background={state.background} text={state.text} channel={state.channel} audio={state.audio} />
-            </Div>
-            </div>
-        ) :  state.glitchtype==="DefaultTextGlitch" ? (
-            <div class={state.glitchtype!=="DefaultTextGlitch" && "hidden"}>
-        <Div
+
+Ñ̷̡̢̨̢̨̡̨̢̧̡̛̛̛̹̬̠͙̙͉̝̰̥͉̺̳̥̤̼̭̺̙͕̤̹̟̤̝̫̭̻̙̲̻͚̖̘̯̭̝̯̩̟̙͓̯͚̫̪͉̠͉̗̰̟̲͔̭̰͕̩̠̰̰͇̣͖̳̞̤̳̖̲̟̪̣̝̩̥͖̗̞̠͉̫̪̩̜͖̭̽̽̾̈́̔̔̅̓̆͗͋̋͛̌̋͌̈́̈̈̌̀̅̈͗̋̈͛͑̒̿͗̇͒̒̏̇͆͛͑͊̓̓̍́͆̔̉̔́̎͋͗̾͒̽̅́͂̅̂͗̃͑̂̏̉̍̓̅̏̈̑̇̑͐̂̃̎̍̉̃̌́̋͂́̎͊͗̾̒͆͒͗̏̑́̆͑͒̌̾́͐̅͋̂̐̀̆̐̉͑̏́̅͑͛̅͂̓̾̒͛̍̑̋̒͑̍̅̉̓̀̎̊̌̅́̀̓͛͆̾̄͐͊͌̀͋̄̎̄̌͊̓̅͂̐̀͛̒͊̅͑̀͊̾͋͋̆̄̍́́͂͆̓͐͐͌̋̎̈́́̑̈́̌̌̓̇̽̌͛̍͐͐̈́̎̌͐̀̀̀̿̒͐̋̎̈́̀͗̓̾̏̒̑̄̾̃͛̈́́̃͆̀̾̄̏̉̂̔̍͐͋͑̕̚̚̕͘͘͘̚̚̕̕͘͘͘͘̕̕͘̚͜͠͠͝͝͝͝͝͠͠͝͠͝͠͝͝͠͝ͅͅͅO̵̡̧̡̢̨̡̢̡̧̢̨̧̢̧̨̧̢̨̡̨̡̨̡̨̡̢̨̨̨̢̨̨͈̫͖͎̱̼̳̭̞̬͍̲̠̱̣̠͙̫̞̝̪̰͈͓̘͚̳̦̺̣͇̘̩͓͎̹͙͇̹̙͕̟̬̜̼̪̼͈̫̩̠̳̤̺̥̮̼̹̞̻̯̺̠̜̗̠̘̰̬̮̥̙̺̫͉̪̫͕̰̦̪̳̗͍̖̟͚̱͓̼̼̝̠̲͍̘͙̻̮̙̟̯̜̩̟͖̯̲͖̰̪͉͓̼̫̲̜̻̼̟̲̬̙͕͚̩̻̜̥̯͎̤͔̺͉̜̪̦͍̠̺̻̤̘͍̜͍̖̪͍̱͓̳̙̮̗̪̰̗̟̟̯̭̪͈̖͔̝̗͇̮̟̙̰̞͉̙̥̼̺̰̟̠̻̲̠̗̩̫̙̤̹̖̗̬̥̣͕͒͑̎͂̈́͐̇̾̀̈́̀͑̒̓̂̋̆̊̃͗̔̈́͜͜͜͜͜͜͜͝ͅͅͅͅͅͅ ̵̢̢̢̨̧̢̧̢̨̢̢̢̢̨̡̢̨̡̨̨̧̛̛̛̛͙͍̮͍̘̖̟̞͈̘̹͔͚͉͔̳̱̹̲̼͍̖̗̫͈̣̰̟̳͙̥̞̰̥͈̣̖̫̭̫̠̭̦̫͕͔̭̮̗̳̩̺͇̥̹̱͎͍̞̣̲̲̮̪̰͇̰̭̬͙͕̥̦̻̺̯͚̦̙̜͉̤͖̼͖̩̰͖̭͕̗̬̜͎̺̲͎͚̳̺͚̣̘̠̼̝̰̤̺͙̙̱̣͓͇̯̹̻͚̦̩͍̭̘̻͇͍̖̳͈̼̟͇͇̭̟̭̹̭̦͇̻̠̜͚̦̦͇̖̰͇͚̹̥̜̳̲̞̙̪̹̥̭̣̻̠̱̩̬̭̝̞̭͔͕̺̥̙̤͇̭̘̘͈̫̠̙̪͈̣̹͎͕̯̭̩͔̹̜̦̣̜̱͇̩͎̱̘̱͚̖̰͎̘̘̻̗̪̹̻̭̺̘̭͙̫̖͕̦͔̹̞̜̺̠̙͕͚͈͎̟͈͚̤̻̫̤͍͈̰͚̬̰̳̻͈̎̃͛̀̃́͑͑̇͋̂͑͗̌̎̆͋̆̓́͆͌̊͐̔̎̐̆̆͛͗̈́̀̋͌̈́̏́̈́̃̓̂͛̇̉̉̃̽̄͋̈́̀̓̍̓́̄̀̀̅̇̉͌͒̍̋̒̈́̍͌̌̊͐̆̉̒̽͋̍̑͂̾̓̀̂͂̏̆̈́͑̈́̔̏̓͗̑̊͌̈́̒̑͘̕͘̕͘͘̚͘̕̕͘͜͜͜͜͜͜͜͠͝͠͝͝͠͝ͅͅͅͅͅͅͅͅͅͅͅͅͅͅŞ̸̡̢̨̡̢̢̡̡̡̛̛̘̳̝͙͎̼̼̣̞͎̯͈̹̦̯̺̦͍̘̻̼̗̲͉̤̣̻̺̺̩͍̤͎̥͎͓̗͚̰̤̠̤͔͖̭̼̘͓̳͙̫̘̜̘͚͔͖̥̠̱̞̤̫̪̺͙̥̥̳̟̟͖̖̬̤̪͉̙̤͇̞̘̙͕͚͍͔̼̥͍͙͈̮͚͙͕̟̺̝͎̬̩͕͓̭͙͚̿̈́̓̀̀̀̏̏̀̏̈̏͂͂͐̃̊̈́͛̂̑̐͆́̿̐͒̒̐̋͐̀̏̔͊̋́͆̍̈͛̿̾̉́͆͑̋̊́̀̀̈́̐̍͋͛̽́̀͛͆̐̒̿̿̓̀́̈͊̉̓̀̏́̄̓̏̂̍͂͂̀͛͊̈́̇̑̑̋̇̒͌̌͌̀̀͆̌͂͊͆̓̈́̒͂̌̂͛͗̈́̇̈́͑͊̍̓́̉̄̾̂̋͐̒͒͊̔̒̒͂̈́͋̌͒̒͐̓̐͂̿͗̀̓́̒̏̏͛͌͆̎͛̈́̏͊̓̀͋̀̓͛̈̎̀̔̈́̉̐͆̎̈͒͐͊̈́̓̀̉͒̎̚̚͘̕͘͘̚̚͜͜͝͝͝͠͝͝͝͝͝͠͝͝ͅͅͅI̴̡̢̧̨̧̨̧̢̨̧̧̢̢̨̢̢̧̨̡̨͚̞̳̻͇͇͓̦͇̬͙̜̝͎̞͙̬̘͖̠͚͉̼̥̥̠̣̠̜͍̣̩̲̲̝͖̱͎͈̻̣͖̘͎͎͇̣̻͕͈͓͖͓͇̖͔͚̼͚͖̬͙̰̳͔̭͕̝̭̰͔͕̲͓̰̘̠̖̤̤̩͍̼̖̬̥̘̫̜̮͖̺̤̭͔͚̖̖̝̪͈̱̘̺̗͎͉̤̮̬͈̭͍̼̱͙͍̩̻͍̗̫̮̞̬̥̲̪̲̠͖̖̜̥̺̱̰̠͚̣̘̭̖̣͈̺͍̖͈͓͖̦̘̝̯͉͉̯͕͙̲̤͈͔̻̞̣͖̯̥̪͎̳̦͔̤̗͓͈̝̯̙̜̹͚̞̼̥͈̻̪̟̟̫̥̺̼̘͔͓̭̼̪͙̱̩͕̯̹̥̹͇̣̰̭̳̩̱͊̋̀̅̅̀͐̍̿̊̏̒͑̅̅̓̈́̐͜͜͜͝͝ͅͅͅͅͅͅǦ̵̢̨̡̧̢̡̧̨̡̨̡̨̧̡̨̨̢̛̛̛͖͚̳̰̗̻̳̖͙̙̝̘͎͓̻͎̤̫̣͓̖̱͙͚̬͇͎̰̺͈̝̪̯̗̝̜̭̲͕̗̞̟̩̩̪̻͉͎̼͎̜͍̫̫̩͖͚̘̱̬̫̘͖̥̱͍̗̼̤̭̩̤̰͎̞͍͓̤̩̤͕̤̹͍̲͓͍̘̫͖̜̰̣̺̬̘̺͖̼̣̬͈̟̼̬͎̼͔̲͚̼͍̗̗̜̝̩̞͈̤̫͉̩͈̼͕̞̭̘̭̖͉̱̜͚̮͚͇̲̘̮̻̲̦͈̭͙͉̯͖̱͎͓̺̼̳̻͙̻̦̖̫̟̯͙̰̫͍̘̣͕͕͙͔̭͖̺̜͓̲͚̟̤̼͙͇͙̣̘̝̦͍̜̜͉͖͙̜̜̭͈͉͚̱̱̹̪͙͚͉̦̭̤̩͚̘̳̳͚̯̠̤͔̬͑͌͆̈́͑̏͂͆͗̃́͒̃̋̾͂̅͆͊̏̆̿̈́͗̈́̅͛̌̽͂̉̈́̇́̄͑̐̀̂̈͑͆̇̈́̿̑͐̀̈́̆̄͒͊̾̍͆̅͒̀̓̃̇̑̊̇̍͋̏̅̈́͒͆͘͘̚͘͘̕͘̕͜͜͜͜͜͜͜͜͜͜͝͝͠͠ͅͅͅͅͅͅͅN̸̛̛̛̛̛̛̛̛̛̤̼͕̜̘̤̠̦͓̾͛̊͂̏̿̃̈́̓̍͐́̇̓̌͐̉͐̈́̄͐́̈̉̎̈́̀̏̋͒̿̈̅̏̇̇̈́̆̊͌̃̿́̓͐̂͐̿͒͂͐̉̄̉̆̔̌͊̄͗̃͛̔̈́̈͌͐̏̊̉̉̎̌̾̊̈̾͊̉̔̑̅̐̽̓́͂̎̑͑͑́̿͗͐́͒̀̆͋͋͗̈́͋͛̀̔̿̀͗̆̿̔̉̍̐͌͛̔̾́̂͛̔̄̄̒̾̋̑͌̾̋͒͗͑̂̆̐̉͆̆̊̂͗͆̂̍̉̆̀͊͑̏̽̅́̅̓̈̇̾̓̈͆̓͗͐͑̒̉̈́̒̂̓͑̓̒̒̉̏̑̓̋͊̈͌̋͌̐̐̅̀̓̑́͗̋͊̈̒͋͐̈̾̌̓̌͂̕̕͘̕͘͘͘͘͘̚͘̚̚̕͝͝͝͝͝͝͠͠͝͠͝͝͝͝͝͠͝͝ͅA̵̢̧̡̡̧̨̨̛̛̛͙͚̫̱̝̣̯̬̩̟͈̥̱̗̱̮̩͉͕͍̯̮͉͇̬̪̺̦͎̩̗̼̹̬̖̼͕͖̱͇̥̰͚̘̲̰̝̻̲̦͇̤͕̳͚͖̞͕̬̹͖̪̞̙͉̥͇̩̫̤͙̣̿̌͑̊͆̿͂͒̀̈́͗͌̓̐͐͗̆͛̓̄̎̐̾͗͗̆͑͂͗̍̽͑̄̆͑̈̈́̐̌́̓̀͌̔̀̾̍̀̅͗̀̓̈̔̄̌̈̃̃͆͐̾͌̎̌̍͒̌͑̈́́͑̀̆͐̿̿̍́̾͆̊͗̃͌̑̉͋̄̒͐͗͗͒̓̍̀͑͂͐͂̈̃̎͆͋̊̒̆͒̀̎́̒͋͐̊͐̈́̊̂͌̔̊͆͋̍̓͒͂̂͒̓̋̍͒̉̄͊̈́̾̃̎͛̈́̍̇̈́̀̈̃͐͗̽̀͒͌̇̆́̔̈́̓͊͐̅̑̓̾̄̈́̊̀̇͛͑͋̌́͌͒̈́͌̈̋̉̇͗̍͐̓͌̐̔̌̿̈́̊̓͂͌̓͒̃͑̒̈́́͆̀̃̏̐̈́̚̚̚̚̚̕͘͘̚̕̕̚̕̚̕̕̚͜͜͜͝͝͠͠͝͠͝͝͝͠͠ͅͅͅL̸̡̨̢̡̧̡̢̨̡̢̢̨̨̡̧̡̡̢̢̧̧̡̛̖̯̺̰̠͖̬̥̥̘̫̯̪̠̪͎͔͇̣̬̣̫̩̠̜͍̖̬̬͚̰̫̜̱̺̳̻̮̥̳̮̲̦͉̗̼͍̥̦̞̗̙̘̬̯̣̝̘̟̩͕̲̖̩̹̜̦̣͚̜͉͎̻̘̞̤̤̻̹͕͍̮̻̺̜̹̭̦̼͔̦̭̟̦͚̙̺̗̳̣̙͓̥͕̼̘̭̺̘͔̦̻̪̰̜͖͇̝̙̲̙͓̰̜̤̫͙͎̣̩̼̖̝̤̣͓̩̥̞͚̗̹͎̜̞̟̮̖͈̠̫͚̩͙̙̮̙̹͚̲͚͚̣̮̮̦̻̜͓̦͍̤͇̹͚̠̫̼̱͔̼̼̳̱͓̭͓̀̀̇̅̑̑͑̉̐͐͒̅̀̈́̌͐̌̅̈́͐͛͌̔̎̇̓̈̽̋͐͂̋͐̑̃͋́̓̈́̿̀͂̾̀̈́̃̄̀̌́̈́̅͒͒͑͊̽̅̂͊͒̉̽̈́̒̔̌͌͆̅̊͋̔͆̔̔͆̕͘̚͘͜͜͜͝͠͝͝͠ͅͅ
+        </div>
+    )
+}else if(state.glitchtype==="static"){
+    return(
+        <Div onKeyDown={e => {KeyHandler(e)}} tabIndex="1">            
+            <DefaultGlitch background={state.background} text={state.text} channel={state.channel} audio={state.audio}/>
+            {/* <DefaultClass background={state.background} text={state.text} channel={state.id}/> */}
+        </Div>
+        
+    )
+}else if(state.glitchtype ==="DefaultTextGlitch"){
+return (
+    <div
+      onKeyDown={e => {
+        KeyHandler(e);
+      }}
+      tabIndex="1"
+    >
+        <DefaultTextGlitch background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
+        {/* <DefaultPurple background={state.background} text={state.text} channel={state.id}/> */}
+    </div>
+)
+}else if (state.glitchtype === "ComicBook"){
+    return(
+        <div
+
             onKeyDown={e => {
               KeyHandler(e);
             }}
             tabIndex="1"
-          >
-              <DefaultTextGlitch background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
-          </Div></div>) : state.glitchtype === "ComicBook" ? (
-              <div class={state.glitchtype!=="ComicBook" && "hidden"}>
-                <Div
-                      onKeyDown={e => {
-                          KeyHandler(e);
-                      }}
-                      tabIndex="1"
-                  >
-                      <ComicBookEffect background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
-                  </Div>
-                  </div>
-          ) : state.glitchtype === "ComicNoGeo" ? (
-            <div class={state.glitchtype!=="ComicNoGeo" && "hidden"}>
-            <Div
+
+        >
+
+            <ComicBookEffect background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
+        </div>
+    )
+}else if(state.glitchtype === "ComicBookNoGeo"){
+    return (
+        <div
+
             onKeyDown={e => {
                 KeyHandler(e);
             }}
             tabIndex="1"
         >
+
+            
             <ComicBookNoGeo background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
-        </Div>
+
         </div>
           ) :  state.glitchtype === "ComicBookText" ? (
             <div class={state.glitchtype!=="ComicBookText" && "hidden"}>
@@ -149,8 +166,10 @@ export default function MainChannelRenderer() {
             }}
             tabIndex="1"
         >
+
+            
             <ComicBookEffectText background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
-        </Div>
+
         </div>
           ) : state.glitchtype === "CreepyLightText" ? (
             <div class={state.glitchtype!=="CreepyLightText" && "hidden"}>
@@ -161,9 +180,7 @@ export default function MainChannelRenderer() {
             tabIndex="1"
         >
             <CreepyLightText background={state.background} text={state.text} channel={state.id} audio={state.audio}/>
-        </Div>
-        </div>
-          ) : null}
+
         </div>
     )
 
